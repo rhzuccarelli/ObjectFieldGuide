@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Actuators — Object Field Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<style>
+@font-face{font-family:"OCR B";src:url(assets/fonts/ocr-b.woff2) format("woff2");font-weight:400}
+:root{--paper:#f2f2f0;--ink:#111;--muted:rgba(17,17,17,.75);--hair:rgba(17,17,17,.2);--sans:"Schibsted Grotesk",Arial,sans-serif;--mono:"OCR B",ui-monospace,Menlo,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:14px/20px var(--sans)}
+a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.sheet{max-width:1040px;margin:0 auto;padding:48px}
+.m{font-family:var(--mono)}
+.meta{font-size:10px;line-height:14px;color:var(--muted)}
+.head{display:grid;grid-template-columns:56px 180px minmax(0,1fr) auto;font:10px/14px var(--mono);color:var(--muted)}
+.title{display:grid;grid-template-columns:56px minmax(0,1fr);align-items:baseline;margin-top:28px}
+.title .t{display:flex;align-items:baseline;gap:20px;flex-wrap:wrap}
+h1{margin:0;font-size:56px;line-height:56px;font-weight:500;letter-spacing:-.02em}
+.sub{margin:0;font-style:italic}
+section{display:grid;grid-template-columns:56px 180px minmax(0,1fr);border-top:1px solid var(--ink);padding-top:12px;margin-top:28px}
+section>.n{font-family:var(--mono)}
+section>.h{font-weight:700}
+section>.h i{display:block;font-weight:400;color:var(--muted)}
+.body p{margin:0 0 12px;max-width:620px}
+.rows{display:grid;grid-template-columns:120px minmax(0,1fr);row-gap:8px;column-gap:16px}
+.rows>.k{color:var(--muted)}
+.rows ul{margin:0;padding-left:16px}
+figure{margin:0 0 16px}
+figure svg{display:block;max-width:100%;height:auto}
+.fig-cap{font-size:10px;line-height:14px;color:var(--muted);margin-top:4px}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;vertical-align:top;padding:6px 12px 6px 0;border-top:1px solid var(--hair)}
+th{font-weight:700}
+.btn{font:14px/20px var(--sans);background:transparent;color:var(--ink);border:1px solid var(--ink);padding:6px 12px;cursor:pointer;border-radius:0;min-height:36px}
+.btn:hover{background:rgba(17,17,17,.06)}
+.btn:focus-visible,.widget:focus-visible,input:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.key{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px}
+.labs{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:24px}
+.lab{border-top:1px solid var(--hair);padding-top:12px}
+.lab h3{margin:0 0 8px;font-size:14px;line-height:20px;font-weight:700}
+.widget{display:block;margin:8px 0;touch-action:none;cursor:pointer;user-select:none}
+.foot{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--hair);padding-top:12px;margin-top:28px}
+@media (max-width:760px){.sheet{padding:24px}section{grid-template-columns:40px minmax(0,1fr)}section>.body{grid-column:1/-1;margin-top:8px}.head{grid-template-columns:40px minmax(0,1fr)}.head span:nth-child(n+3){grid-column:2}.title{grid-template-columns:40px minmax(0,1fr)}.rows{grid-template-columns:1fr}.rows>.k{margin-top:4px}}
+@media print{.sheet{padding:0}.labs,.key,.btn{display:none}section{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<div class="head"><span>00.0</span><span>Volume III</span><span>OFG-03 · Actuators · Rev. A</span><span><a href="index.html">Contents</a></span></div>
+
+<div class="title">
+  <span class="m meta">III</span>
+  <div class="t"><h1>Actuators</h1><p class="sub">How a person asks an object to do something. And how the object answers.</p></div>
+</div>
+
+<section id="read">
+  <span class="n">01</span><span class="h">How to read this volume</span>
+  <div class="body">
+    <p>Every actuator here is treated as a species. Each entry has the same fields, so two species can be compared line by line: how to identify it, when to use it and when not, how to proportion it, how it is made, how it feels and sounds, which species it is confused with, where it lives (its habitat: real products), and where it appears in my own work.</p>
+    <p>Numbers marked <span class="m">[verify]</span> are starting points from common practice, not laws. Test them on a printed sample before trusting them. <em>That is what the sample is for.</em></p>
+  </div>
+</section>
+
+<section id="questions">
+  <span class="n">02</span><span class="h">Four questions<i>An identification key</i></span>
+  <div class="body">
+    <p>Before choosing an actuator, answer four questions. They decide most of the design.</p>
+    <div class="rows">
+      <span class="k m">02.1</span><span><b>What does the finger do?</b> Press, flip, slide or turn. This sets the gesture, and the gesture sets the form.</span>
+      <span class="k m">02.2</span><span><b>Does it stay where you leave it?</b> A latching actuator shows its state. A momentary one forgets it the moment you let go, so something else (a light, a screen, a sound) has to say what happened.</span>
+      <span class="k m">02.3</span><span><b>Steps or continuous?</b> Steps are for choices (off, low, high). Continuous is for amounts (volume, tuning). Detents turn an amount into choices.</span>
+      <span class="k m">02.4</span><span><b>Can you use it without looking?</b> Shape, travel, clicks and end stops are how a hand reads an object in the dark.</span>
+    </div>
+    <p style="margin-top:16px"><b>Try the key.</b> Answer the questions and it names the species.</p>
+    <div id="key" aria-live="polite"></div>
+  </div>
+</section>
+
+<div id="species"></div>
+
+<section id="lab">
+  <span class="n">11</span><span class="h">Lab: feel and sound<i>Use headphones</i></span>
+  <div class="body">
+    <p>Four actuators, synthesised. None of them is real, which is the point: the difference between them is mostly in what happens at the end of the gesture.</p>
+    <div class="labs">
+      <div class="lab">
+        <h3>Momentary push</h3>
+        <svg id="w-push" class="widget" tabindex="0" role="button" aria-label="Momentary push button. Press and hold." width="160" height="120" viewBox="0 0 160 120">
+          <rect x="20" y="70" width="120" height="30" fill="none" stroke="#111"></rect>
+          <rect id="w-push-cap" x="50" y="40" width="60" height="30" fill="#f2f2f0" stroke="#111"></rect>
+        </svg>
+        <p class="meta">Two sounds: one on the way down, a softer one on the way up. Nothing stays.</p>
+      </div>
+      <div class="lab">
+        <h3>Toggle</h3>
+        <svg id="w-toggle" class="widget" tabindex="0" role="switch" aria-checked="false" aria-label="Toggle switch" width="160" height="120" viewBox="0 0 160 120">
+          <rect x="20" y="90" width="120" height="10" fill="none" stroke="#111"></rect>
+          <circle cx="80" cy="86" r="10" fill="#f2f2f0" stroke="#111"></circle>
+          <line id="w-toggle-bat" x1="80" y1="86" x2="58" y2="34" stroke="#111" stroke-width="6" stroke-linecap="round"></line>
+          <text x="20" y="20" font-family="OCR B, monospace" font-size="10" fill="#111">OFF</text>
+          <text x="124" y="20" font-family="OCR B, monospace" font-size="10" fill="#111">ON</text>
+        </svg>
+        <p class="meta">One snap. The lever shows the state from across the room.</p>
+      </div>
+      <div class="lab">
+        <h3>Rotary</h3>
+        <svg id="w-knob" class="widget" tabindex="0" role="slider" aria-label="Rotary knob. Drag up or down, or use arrow keys." aria-valuemin="0" aria-valuemax="300" aria-valuenow="0" width="160" height="120" viewBox="0 0 160 120">
+          <g id="w-knob-scale"></g>
+          <circle cx="80" cy="62" r="34" fill="#f2f2f0" stroke="#111"></circle>
+          <line id="w-knob-ptr" x1="80" y1="62" x2="80" y2="34" stroke="#111" stroke-width="2"></line>
+        </svg>
+        <label class="meta" for="w-det">Detents per turn</label>
+        <select id="w-det" class="btn" style="margin-left:8px;padding:2px 8px;min-height:28px">
+          <option value="0">none</option><option value="12">12</option><option value="24" selected>24</option>
+        </select>
+        <p class="meta">Drag up or down. With detents, each step ticks; without, the knob is silent and the eye has to read the scale.</p>
+      </div>
+      <div class="lab">
+        <h3>Slider</h3>
+        <svg id="w-slide" class="widget" tabindex="0" role="slider" aria-label="Slider. Drag along the track, or use arrow keys." aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" width="160" height="120" viewBox="0 0 160 120">
+          <line x1="20" y1="60" x2="140" y2="60" stroke="#111"></line>
+          <g id="w-slide-ticks"></g>
+          <rect id="w-slide-cap" x="74" y="46" width="12" height="28" fill="#f2f2f0" stroke="#111"></rect>
+        </svg>
+        <p class="meta">Silent by design. Position is the information, and you can read it without touching it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reference">
+  <span class="n">12</span><span class="h">Quick reference</span>
+  <div class="body">
+    <table>
+      <thead><tr><th>Species</th><th>Gesture</th><th>State shown</th><th>Steps</th><th>Blind use</th></tr></thead>
+      <tbody id="ref-rows"></tbody>
+    </table>
+  </div>
+</section>
+
+<div class="foot meta"><span>Object Field Guide · Volume III · Actuators · Rev. A</span><span>zuccarelli · barcelona</span></div>
+</div>
+
+<script>
+const S = [
+ {id:'momentary', n:'03', name:'Momentary push button', latin:'Pulsator momentaneus', gesture:'Press', state:'No', steps:'—', blind:'With a shaped cap',
+  identify:'A cap that moves in and comes back by itself. Nothing on the object changes when you let go.',
+  yes:['Actions, not settings: record, take a photo, next track.','When something else (a light, a screen, a sound) confirms what happened.'],
+  no:['For on and off on its own: the button cannot tell you whether the thing is on.','Where an accidental press is expensive. Recess it, or ask for a long press.'],
+  proportion:['Cap at least the size of a fingertip contact, around 10 mm, if it is used without looking. Smaller works, but the user has to aim. [verify]','Leave a clear gap around the cap so it never rubs: 0.3–0.5 mm in FFF as a first try. [verify]','Short travel feels precise (tactile domes: a fraction of a millimetre). Longer travel feels mechanical (keyboard-style: a few millimetres).'],
+  make:'A cap guided by its walls or by a post, over a tactile switch or a dome. The guide matters more than the cap: a cap that rocks feels cheap whatever it looks like.',
+  feel:'Two events, down and up. The best ones click on the way down and say almost nothing on the way up.',
+  alike:'Latching push button: same gesture, but it stays down.',
+  habitat:['Braun ET66 calculator (Dietrich Lubs, 1987): convex keys, colour-coded by function.','Doorbells, everywhere.','The buttons of the teenage engineering TP-7.'],
+  mine:'—',
+  draw:'momentary'},
+ {id:'latching', n:'04', name:'Latching push button', latin:'Pulsator retentus', gesture:'Press', state:'Yes, by height', steps:'2', blind:'Yes, if the height difference is clear',
+  identify:'Press once, it stays down. Press again, it comes back up. The difference in height is the only sign of state.',
+  yes:['Power and mode switches where a flush, quiet front matters more than a lever.','When two states are enough and both are common.'],
+  no:['When the difference in height is too small to see or feel: then it is a momentary button that lies.'],
+  proportion:['Make the two heights clearly different: a few millimetres, not a fraction. [verify]','If it can be confused with its neighbours, mark the down state (a colour on the side that only shows when up, for example).'],
+  make:'A push-push mechanism: a pin running in a heart-shaped cam track that holds the plunger down on one press and releases it on the next.',
+  feel:'A longer, two-stage travel: press past the catch, then it settles. The settle is the confirmation.',
+  alike:'Momentary push button (same gesture, no memory). Toggle (same memory, different gesture).',
+  habitat:['Retractable ballpoint pens such as the Parker Jotter (1954): the same push-push idea, in a pocket.','Power switches on hi-fi and studio equipment.'],
+  mine:'—',
+  draw:'latching'},
+ {id:'toggle', n:'05', name:'Toggle switch', latin:'Vectis bistabilis', gesture:'Flip', state:'Yes, by angle', steps:'2 or 3', blind:'Yes',
+  identify:'A short lever, the bat, that snaps between two (sometimes three) positions. Its angle is its state.',
+  yes:['Settings that must be readable at a glance, from a distance, by touch.','Panels with several switches: a row of levers is a row of answers.'],
+  no:['Where it can be knocked: a lever sticks out. Add guards or recess the panel.','For actions that happen once. A lever that has to be pushed back is a chore.'],
+  proportion:['Panel toggles are specified by their bushing: commonly 1/4" (miniature) or 15/32" (full size). Draw the hole from the datasheet, not from a photo.','Leave room for a finger on both sides of the bat, not just for the switch body.'],
+  make:'An off-the-shelf switch through a panel hole, held by a nut on the bushing. In FFF, the panel needs to be thick or ribbed enough not to flex when the switch snaps.',
+  feel:'One clean, loud snap. The resistance before the snap is part of the safety: it does not change state by brushing it.',
+  alike:'Rocker: same two states, a plate instead of a lever, flush instead of proud.',
+  habitat:['Nagra 4.2: the TAPE / DIRECT and filter switches, labelled on the plate around them.','Aircraft overhead panels: rows of levers, some with guards.'],
+  mine:'XIAO toggle box: a toggle as the only control, so its angle is the whole interface.',
+  draw:'toggle'},
+ {id:'rocker', n:'06', name:'Rocker switch', latin:'Tabula oscillans', gesture:'Press one end', state:'Yes, by tilt', steps:'2', blind:'Partly',
+  identify:'A plate on a pivot. Press one end down and the other comes up. Usually flush with the surface around it.',
+  yes:['Mains power and lights: big, easy to hit, hard to break.','When a lever would stick out too much.'],
+  no:['When the state must be seen from far away: a tilt is subtler than a lever. Mark one end.'],
+  proportion:['Specified by its panel cut-out: take it from the datasheet.','Make the two ends different (a dot, a line, a texture) so the tilt can be read.'],
+  make:'Snap-in switches into a rectangular cut-out. The panel wall thickness has to match the switch clips.',
+  feel:'A broad, low click. Less precise than a toggle, more forgiving.',
+  alike:'Toggle (lever instead of plate). Latching push button (flush, but one press point).',
+  habitat:['Household wall light switches.','Power switches on the back of desktop equipment.'],
+  mine:'—',
+  draw:'rocker'},
+ {id:'slider', n:'07', name:'Slider', latin:'Cursor linearis', gesture:'Slide', state:'Yes, by position', steps:'Continuous, or a few positions', blind:'Partly, by end stops',
+  identify:'A cap that moves along a straight track. Its position is the value.',
+  yes:['Amounts that are compared side by side: a row of sliders is a graph you can touch.','Slide switches for a few modes, where position is easier to read than a label.'],
+  no:['Where the travel cannot be long enough for the resolution needed.','Dusty or wet places: the slot is open to the inside.'],
+  proportion:['Travel sets resolution. Faders commonly come in about 45, 60 and 100 mm of travel; 100 mm is the studio standard.','The cap must be easy to pinch and push, and should not cover the scale it points at.'],
+  make:'An off-the-shelf slide potentiometer or switch behind a slot; the slot length is the travel plus the cap. Hide the inside with a dust strip if the product needs it.',
+  feel:'Usually silent and smooth. Friction is the design: too light and it drifts, too heavy and it jumps.',
+  alike:'Continuous rotary (same job, circular). Rocker (a slide switch with two positions does the same work).',
+  habitat:['Channel faders on mixing consoles.','Slide switches on portable radios and recorders.'],
+  mine:'—',
+  draw:'slider'},
+ {id:'detent', n:'08', name:'Rotary with detents', latin:'Rota gradata', gesture:'Turn', state:'Yes, by angle', steps:'A fixed number per turn', blind:'Yes: count the clicks',
+  identify:'A knob that clicks into positions as it turns. Each click is a step you can count.',
+  yes:['Choices with an order: modes, ranges, apertures.','Encoders that step through menus, where each click must equal one change.'],
+  no:['Fine continuous amounts, unless the steps are small enough to disappear.'],
+  proportion:['Encoders commonly have 12, 20 or 24 detents per turn. Fewer, stronger clicks for modes; more, lighter clicks for values.','The pointer or the printed positions must say where it is; a round knob with no mark only works with a screen.'],
+  make:'A detented switch or encoder on a shaft, the knob fixed by a set screw or a D-shaft. In FFF, print the knob with the D-hole slightly undersized and test the fit.',
+  feel:'A row of clicks. The spacing and the strength of the click are the character of the whole object.',
+  alike:'Continuous rotary (same gesture, no clicks). Wheel (clicks too, but no end).',
+  habitat:['The aperture ring of a Leica M lens: one click per stop.','The function selector of the Nagra 4.2: TEST, RECORD, PLAYBACK, each a position you can feel.'],
+  mine:'TapeMixer: the encoders of the Console 1, stepping through channels.',
+  draw:'detent'},
+ {id:'rotary', n:'09', name:'Continuous rotary', latin:'Rota continua', gesture:'Turn', state:'Yes, by angle', steps:'Continuous, with end stops', blind:'By end stops only',
+  identify:'A knob that turns smoothly between two stops. Its angle is the value, and the stops are its zero and its maximum.',
+  yes:['Amounts: volume, level, tuning.','When the end stops mean something (silent, full).'],
+  no:['Choices: without clicks the user cannot tell positions apart without looking.'],
+  proportion:['Typical potentiometers turn about 270–300 degrees. Draw the scale over that arc, not a full circle.','Common shafts are 6 mm or 1/4". The knob size follows the precision wanted: bigger knobs, finer control.'],
+  make:'A potentiometer on a shaft through the panel; the knob carries the pointer. The scale lives on the panel, not on the knob.',
+  feel:'Silent. The resistance (the damping) is what makes it feel precise or cheap.',
+  alike:'Rotary with detents (clicks). Slider (same job, straight).',
+  habitat:['Braun T3 pocket radio (Dieter Rams, 1958): the tuning dial is the face of the object.','The level knobs of the Nagra 4.2, with their scales printed around them.'],
+  mine:'—',
+  draw:'rotary'},
+ {id:'wheel', n:'10', name:'Wheel', latin:'Rota infinita', gesture:'Turn, without end', state:'No', steps:'Continuous or clicked, no end', blind:'Only relative',
+  identify:'A wheel or ring with no end stop. It does not say where it is, only how much it moved.',
+  yes:['Scrolling, scrubbing, navigating long lists.','When the state lives on a screen, not on the control.'],
+  no:['When the user needs to know the value without a screen.'],
+  proportion:['The edge must be easy to drive with a thumb or a fingertip: texture or knurling helps.','Decide the ratio: how much movement per turn. It is the feel of the whole interface.'],
+  make:'An encoder or a sensor wheel. Motorised versions (force feedback) can push back or move by themselves.',
+  feel:'Either smooth or finely clicked. With a motor, it can feel like what it controls.',
+  alike:'Rotary with detents (it has an end, or absolute positions).',
+  habitat:['The teenage engineering TP-7: a motorised reel that turns while it records and can be held to scrub.','The iPod click wheel (2004): a wheel that does not turn. The finger does.'],
+  mine:'TapeMixer: scrubbing audio with the TP-7 reel.',
+  draw:'wheel'}
+];
+
+const DRAW = {
+ momentary:`<rect x="40" y="90" width="200" height="20"/><rect x="100" y="50" width="80" height="40"/><path d="M120 90v-8m40 8v-8"/><path d="M140 112v20" stroke-dasharray="3 3"/><path d="M120 120q20 -12 40 0" stroke-dasharray="3 3"/>`,
+ latching:`<rect x="40" y="90" width="200" height="20"/><rect x="70" y="50" width="60" height="40"/><rect x="160" y="74" width="60" height="16"/><text x="100" y="140" text-anchor="middle">up</text><text x="190" y="140" text-anchor="middle">down</text>`,
+ toggle:`<rect x="40" y="110" width="200" height="10"/><rect x="120" y="96" width="40" height="14"/><circle cx="140" cy="94" r="8"/><path d="M140 94 L112 36" stroke-width="8" stroke-linecap="round"/><path d="M140 94 L168 36" stroke-dasharray="3 3"/>`,
+ rocker:`<rect x="40" y="96" width="200" height="14"/><path d="M90 84 L190 64 L190 78 L90 98 Z"/><circle cx="140" cy="84" r="3"/><circle cx="100" cy="88" r="2"/>`,
+ slider:`<rect x="40" y="80" width="200" height="8"/><rect x="150" y="62" width="16" height="44"/><path d="M40 120h200"/><path d="M40 116v8m50 -8v8m50 -8v8m50 -8v8m50 -8v8"/>`,
+ detent:`<circle cx="140" cy="78" r="40"/><path d="M140 78 L140 44" stroke-width="2"/>`+Array.from({length:12},(_,i)=>{const a=(-150+i*(300/11))*Math.PI/180;const x1=140+Math.sin(a)*50,y1=78-Math.cos(a)*50,x2=140+Math.sin(a)*58,y2=78-Math.cos(a)*58;return `<path d="M${x1.toFixed(1)} ${y1.toFixed(1)}L${x2.toFixed(1)} ${y2.toFixed(1)}"/>`}).join(''),
+ rotary:`<circle cx="140" cy="78" r="40"/><path d="M140 78 L118 50" stroke-width="2"/><path d="M${(140+Math.sin(-150*Math.PI/180)*54).toFixed(1)} ${(78-Math.cos(-150*Math.PI/180)*54).toFixed(1)} A54 54 0 1 1 ${(140+Math.sin(150*Math.PI/180)*54).toFixed(1)} ${(78-Math.cos(150*Math.PI/180)*54).toFixed(1)}"/><text x="94" y="136">0</text><text x="178" y="136">10</text>`,
+ wheel:`<ellipse cx="140" cy="78" rx="56" ry="56"/><ellipse cx="140" cy="78" rx="20" ry="20"/>`+Array.from({length:24},(_,i)=>{const a=i*15*Math.PI/180;return `<path d="M${(140+Math.cos(a)*52).toFixed(1)} ${(78+Math.sin(a)*52).toFixed(1)}L${(140+Math.cos(a)*56).toFixed(1)} ${(78+Math.sin(a)*56).toFixed(1)}"/>`}).join('')
+};
+
+const esc = s => s.replace(/\[verify\]/g,'<span class="m">[verify]</span>');
+const list = a => '<ul>'+a.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>';
+document.getElementById('species').innerHTML = S.map(s=>`
+<section id="${s.id}">
+  <span class="n">${s.n}</span><span class="h">${s.name}<i>${s.latin}</i></span>
+  <div class="body">
+    <figure><svg width="280" height="150" viewBox="0 0 280 150" role="img" aria-label="Schematic drawing of a ${s.name.toLowerCase()}"><g fill="none" stroke="#111" stroke-width="1" font-family="OCR B, monospace" font-size="10">${DRAW[s.draw]}</g></svg><div class="fig-cap">Schematic, not to scale.</div></figure>
+    <div class="rows">
+      <span class="k">Identify</span><span>${s.identify}</span>
+      <span class="k">Use when</span><span>${list(s.yes)}</span>
+      <span class="k">Avoid when</span><span>${list(s.no)}</span>
+      <span class="k">Proportion</span><span>${list(s.proportion)}</span>
+      <span class="k">Make</span><span>${s.make}</span>
+      <span class="k">Feel and sound</span><span>${s.feel}</span>
+      <span class="k">Look-alikes</span><span>${s.alike}</span>
+      <span class="k">Habitat</span><span>${list(s.habitat)}</span>
+      <span class="k">In my work</span><span>${s.mine}</span>
+    </div>
+  </div>
+</section>`).join('');
+document.querySelectorAll('#species svg text').forEach(t=>{t.setAttribute('fill','#111');t.setAttribute('stroke','none')});
+
+document.getElementById('ref-rows').innerHTML = S.map(s=>`<tr><td><a href="#${s.id}">${s.name}</a></td><td>${s.gesture}</td><td>${s.state}</td><td>${s.steps}</td><td>${s.blind}</td></tr>`).join('');
+
+/* identification key */
+const KEY = {
+ start:{q:'What does the finger do?', a:[['Press','press'],['Flip','flip'],['Slide','=slider'],['Turn','turn']]},
+ press:{q:'Does it stay down when you let go?', a:[['No','=momentary'],['Yes','=latching']]},
+ flip:{q:'A lever, or a plate?', a:[['A lever','=toggle'],['A plate','=rocker']]},
+ turn:{q:'Does it have an end stop?', a:[['No, it turns forever','=wheel'],['Yes','stops']]},
+ stops:{q:'Does it click as it turns?', a:[['Yes','=detent'],['No','=rotary']]}
+};
+const keyEl = document.getElementById('key');
+function showKey(node, path){
+  if(node.startsWith('=')){
+    const s = S.find(x=>x.id===node.slice(1));
+    keyEl.innerHTML = `<p class="meta">${path.join(' → ')}</p><p>It is a <a href="#${s.id}"><b>${s.name}</b></a>, <em>${s.latin}</em>.</p><div class="key"><button class="btn" type="button">Start again</button></div>`;
+    keyEl.querySelector('button').onclick = ()=>showKey('start',[]);
+    return;
+  }
+  const k = KEY[node];
+  keyEl.innerHTML = `${path.length?`<p class="meta">${path.join(' → ')}</p>`:''}<p>${k.q}</p><div class="key">${k.a.map((x,i)=>`<button class="btn" type="button" data-i="${i}">${x[0]}</button>`).join('')}</div>`;
+  keyEl.querySelectorAll('button').forEach(b=>b.onclick=()=>{const x=k.a[+b.dataset.i];showKey(x[1],[...path,x[0]])});
+}
+showKey('start',[]);
+
+/* sound */
+let ctx=null;
+function ac(){ if(!ctx) ctx=new (window.AudioContext||window.webkitAudioContext)(); if(ctx.state==='suspended') ctx.resume(); return ctx; }
+function click({freq=2500,q=4,gain=.5,decay=.012}={}){
+  const c=ac(), len=Math.ceil(c.sampleRate*.06), buf=c.createBuffer(1,len,c.sampleRate), d=buf.getChannelData(0);
+  for(let i=0;i<len;i++) d[i]=(Math.random()*2-1)*Math.exp(-i/(c.sampleRate*decay));
+  const src=c.createBufferSource(); src.buffer=buf;
+  const f=c.createBiquadFilter(); f.type='bandpass'; f.frequency.value=freq; f.Q.value=q;
+  const g=c.createGain(); g.gain.value=gain;
+  src.connect(f).connect(g).connect(c.destination); src.start();
+}
+
+/* momentary */
+const push=document.getElementById('w-push'), cap=document.getElementById('w-push-cap');
+const down=()=>{cap.setAttribute('y','58');click({freq:3200,gain:.6,decay:.006})};
+const up=()=>{if(cap.getAttribute('y')==='58'){cap.setAttribute('y','40');click({freq:2200,gain:.25,decay:.005})}};
+push.addEventListener('pointerdown',e=>{push.setPointerCapture(e.pointerId);down()});
+push.addEventListener('pointerup',up); push.addEventListener('pointercancel',up);
+push.addEventListener('keydown',e=>{if((e.key===' '||e.key==='Enter')&&!e.repeat){e.preventDefault();down()}});
+push.addEventListener('keyup',e=>{if(e.key===' '||e.key==='Enter')up()});
+
+/* toggle */
+const tog=document.getElementById('w-toggle'), bat=document.getElementById('w-toggle-bat'); let on=false;
+const flip=()=>{on=!on;bat.setAttribute('x2',on?'102':'58');tog.setAttribute('aria-checked',on);click({freq:1800,q:2,gain:.9,decay:.02})};
+tog.addEventListener('click',flip);
+tog.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();flip()}});
+
+/* rotary */
+const knob=document.getElementById('w-knob'), ptr=document.getElementById('w-knob-ptr'), det=document.getElementById('w-det'), scale=document.getElementById('w-knob-scale');
+let ang=0, lastStep=0;
+function drawScale(){
+  const n=+det.value; let h='';
+  const marks=n?Math.round(n*300/360):12;
+  for(let i=0;i<=marks;i++){const a=(-150+i*300/marks)*Math.PI/180;h+=`<line x1="${80+Math.sin(a)*40}" y1="${62-Math.cos(a)*40}" x2="${80+Math.sin(a)*(n?44:46)}" y2="${62-Math.cos(a)*(n?44:46)}" stroke="#111"/>`}
+  scale.innerHTML=h;
+}
+function setAng(a){
+  ang=Math.max(0,Math.min(300,a)); const n=+det.value;
+  let shown=ang;
+  if(n){const step=360/n; const s=Math.round(ang/step); shown=s*step; if(s!==lastStep){click({freq:3800,q:6,gain:.35,decay:.004});lastStep=s}}
+  const r=(-150+shown)*Math.PI/180; ptr.setAttribute('x2',80+Math.sin(r)*28); ptr.setAttribute('y2',62-Math.cos(r)*28);
+  knob.setAttribute('aria-valuenow',Math.round(shown));
+}
+let dragY=null,startA=0;
+knob.addEventListener('pointerdown',e=>{knob.setPointerCapture(e.pointerId);dragY=e.clientY;startA=ang;ac()});
+knob.addEventListener('pointermove',e=>{if(dragY!==null)setAng(startA+(dragY-e.clientY)*1.5)});
+knob.addEventListener('pointerup',()=>dragY=null);
+knob.addEventListener('keydown',e=>{const n=+det.value,st=n?360/n:5;if(e.key==='ArrowUp'||e.key==='ArrowRight'){e.preventDefault();setAng(ang+st)}if(e.key==='ArrowDown'||e.key==='ArrowLeft'){e.preventDefault();setAng(ang-st)}});
+det.addEventListener('change',()=>{drawScale();lastStep=Math.round(ang/(360/(+det.value||1)));setAng(ang)});
+drawScale(); setAng(0);
+
+/* slider */
+const sl=document.getElementById('w-slide'), sc=document.getElementById('w-slide-cap'); let val=50;
+document.getElementById('w-slide-ticks').innerHTML=Array.from({length:11},(_,i)=>`<line x1="${20+i*12}" y1="84" x2="${20+i*12}" y2="${i%5?88:92}" stroke="#111"/>`).join('');
+function setVal(v){val=Math.max(0,Math.min(100,v));sc.setAttribute('x',20+val*1.2-6);sl.setAttribute('aria-valuenow',Math.round(val))}
+function fromX(e){const r=sl.getBoundingClientRect();setVal(((e.clientX-r.left)*160/r.width-20)/1.2)}
+let sliding=false;
+sl.addEventListener('pointerdown',e=>{sl.setPointerCapture(e.pointerId);sliding=true;fromX(e)});
+sl.addEventListener('pointermove',e=>{if(sliding)fromX(e)});
+sl.addEventListener('pointerup',()=>sliding=false);
+sl.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowUp'){e.preventDefault();setVal(val+5)}if(e.key==='ArrowLeft'||e.key==='ArrowDown'){e.preventDefault();setVal(val-5)}});
+setVal(50);
+</script>
+</body>
+</html>

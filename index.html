@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Object Field Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<style>
+@font-face{font-family:"OCR B";src:url(assets/fonts/ocr-b.woff2) format("woff2");font-weight:400}
+:root{--paper:#f2f2f0;--ink:#111;--muted:rgba(17,17,17,.75);--hair:rgba(17,17,17,.2);--sans:"Schibsted Grotesk",Arial,sans-serif;--mono:"OCR B",ui-monospace,Menlo,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:14px/20px var(--sans)}
+a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.sheet{max-width:1040px;margin:0 auto;padding:48px}
+.m{font-family:var(--mono)}
+.meta{font-size:10px;line-height:14px;color:var(--muted)}
+.head{display:grid;grid-template-columns:56px 180px minmax(0,1fr) auto;font:10px/14px var(--mono);color:var(--muted)}
+.title{display:grid;grid-template-columns:56px minmax(0,1fr);align-items:baseline;margin-top:28px}
+.title .t{display:flex;align-items:baseline;gap:20px;flex-wrap:wrap}
+h1{margin:0;font-size:56px;line-height:56px;font-weight:500;letter-spacing:-.02em}
+.sub{margin:0;font-style:italic}
+section{display:grid;grid-template-columns:56px 180px minmax(0,1fr);border-top:1px solid var(--ink);padding-top:12px;margin-top:28px}
+section>.n{font-family:var(--mono)}
+section>.h{font-weight:700}
+.body p{margin:0 0 12px;max-width:620px}
+.vols{display:grid;grid-template-columns:52px 160px minmax(0,1fr) auto;row-gap:8px;column-gap:16px}
+.vols .k{font-family:var(--mono);color:var(--muted)}
+.vols .s{font-size:10px;line-height:20px;color:var(--muted);font-family:var(--mono)}
+.az{columns:2 220px;column-gap:24px}
+.az div{break-inside:avoid;margin-bottom:8px}
+.az b{font-weight:700}
+.foot{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--hair);padding-top:12px;margin-top:28px}
+@media (max-width:760px){.sheet{padding:24px}section{grid-template-columns:40px minmax(0,1fr)}section>.body{grid-column:1/-1;margin-top:8px}.head{grid-template-columns:40px minmax(0,1fr)}.head span:nth-child(n+3){grid-column:2}.title{grid-template-columns:40px minmax(0,1fr)}.vols{grid-template-columns:40px minmax(0,1fr)}.vols .d,.vols .s{grid-column:2}}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<div class="head"><span>00.0</span><span>Contents</span><span>OFG · Object Field Guide · Rev. A</span><span>2026</span></div>
+
+<div class="title">
+  <span class="m meta">OFG</span>
+  <div class="t"><h1>Object Field Guide</h1><p class="sub">How objects are joined, touched, proportioned and shaped. With reasons.</p></div>
+</div>
+
+<section>
+  <span class="n">01</span><span class="h">About</span>
+  <div class="body">
+    <p>A field guide identifies species in the wild. This one does the same with the parts of objects: the joints that hold them together, the buttons and knobs that people touch, the proportions and forms that decide how they look. Each part is a species, with the marks to identify it, when to use it and when not, how to proportion and make it, its look-alikes, and its habitat: real products where it lives.</p>
+    <p>It is the working guide of an industrial designer, written down so the decisions do not have to be made twice. It is also for students, who will make them for the first time. <em>Both are welcome to disagree.</em></p>
+    <p>A companion to the <a href="https://rhzuccarelli.github.io/SoundFieldGuide/">Sound Field Guide</a>.</p>
+  </div>
+</section>
+
+<section>
+  <span class="n">02</span><span class="h">Volumes</span>
+  <div class="body">
+    <div class="vols">
+      <span class="k">I</span><span>Joints</span><span class="d">How two parts become one: screws, inserts, magnets, bayonets, threads, pins, living hinges, shape locks.</span><span class="s">in preparation</span>
+      <span class="k">II</span><span>Snap-fits</span><span class="d">Cantilever, annular, torsion and ball snaps. How they are proportioned, and whether they are meant to open.</span><span class="s">in preparation</span>
+      <span class="k">III</span><span><a href="actuators.html">Actuators</a></span><span class="d">How a person asks an object to do something: push, latch, toggle, rocker, slider, rotary, wheel. With an identification key and a feel-and-sound lab.</span><span class="s">Rev. A</span>
+      <span class="k">IV</span><span>Buttons</span><span class="d">The most common actuator, in detail: concave or convex, travel, force, guide, gap, colour and shape codes.</span><span class="s">in preparation</span>
+      <span class="k">V</span><span>Proportions</span><span class="d">Choosing dimensions without deciding each one: module, √2, Renard preferred numbers, the Lego module, the Modulor.</span><span class="s">in preparation</span>
+      <span class="k">VI</span><span>Forms</span><span class="d">Primitives, constant and variable radii, chamfers, the superellipse, edges and grip.</span><span class="s">in preparation</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="n">03</span><span class="h">Index A–Z</span>
+  <div class="body">
+    <div class="az" id="az"></div>
+  </div>
+</section>
+
+<div class="foot meta"><span>Object Field Guide · Rev. A</span><span>zuccarelli · barcelona</span></div>
+</div>
+<script>
+const TERMS = [
+ ['Detent','A position a rotary control clicks into. Turns an amount into a choice.','actuators.html#detent'],
+ ['Encoder','A rotary sensor that reports movement, not position. Often with detents, often without end.','actuators.html#detent'],
+ ['End stop','The mechanical limit of a control. It is the zero and the maximum you can find without looking.','actuators.html#rotary'],
+ ['Fader','A linear slider for an amount, as on a mixing console.','actuators.html#slider'],
+ ['Identification key','A sequence of questions that narrows down a species. Volume III starts with one.','actuators.html#questions'],
+ ['Latching','Stays where you leave it, and so shows its state.','actuators.html#latching'],
+ ['Momentary','Returns by itself when released. It forgets.','actuators.html#momentary'],
+ ['Push-push','A latching mechanism: press to lock, press again to release. A pin in a heart-shaped cam track.','actuators.html#latching'],
+ ['Rocker','A plate on a pivot; press one end down and the other comes up.','actuators.html#rocker'],
+ ['Slider','A cap that moves along a straight track. Its position is the value.','actuators.html#slider'],
+ ['Toggle','A lever that snaps between positions. Its angle is its state.','actuators.html#toggle'],
+ ['Travel','How far an actuator moves from rest to its end.','actuators.html#momentary'],
+ ['Wheel','A rotary control without end. It says how much it moved, never where it is.','actuators.html#wheel']
+];
+document.getElementById('az').innerHTML = TERMS.sort((a,b)=>a[0].localeCompare(b[0])).map(t=>`<div><b><a href="${t[2]}">${t[0]}</a></b>. ${t[1]}</div>`).join('');
+</script>
+</body>
+</html>
