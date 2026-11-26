@@ -38,12 +38,18 @@ th{font-weight:700}
 .btn:hover{background:rgba(17,17,17,.06)}
 .btn:focus-visible,.widget:focus-visible,input:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 .key{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px}
-.labs{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:24px}
+.labs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:24px}
 .lab{border-top:1px solid var(--hair);padding-top:12px}
 .lab h3{margin:0 0 8px;font-size:14px;line-height:20px;font-weight:700}
 .widget{display:block;margin:8px 0;touch-action:none;cursor:pointer;user-select:none}
 .foot{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--hair);padding-top:12px;margin-top:28px}
 @media (max-width:760px){.sheet{padding:24px}section{grid-template-columns:40px minmax(0,1fr)}section>.body{grid-column:1/-1;margin-top:8px}.head{grid-template-columns:40px minmax(0,1fr)}.head span:nth-child(n+3){grid-column:2}.title{grid-template-columns:40px minmax(0,1fr)}.rows{grid-template-columns:1fr}.rows>.k{margin-top:4px}}
+.photo{margin:0 0 16px;max-width:420px}
+.photo img{display:block;width:100%;height:auto;filter:grayscale(1) contrast(1.05);background:rgba(17,17,17,.06)}
+.photo figcaption{margin-top:4px}
+.lm{display:grid;grid-template-columns:72px minmax(0,1fr);row-gap:20px;column-gap:16px}
+.lm .y{font-family:var(--mono)}
+.lm p{margin:0 0 4px;max-width:620px}
 @media print{.sheet{padding:0}.labs,.key,.btn{display:none}section{break-inside:avoid}}
 </style>
 </head>
@@ -132,8 +138,13 @@ th{font-weight:700}
   </div>
 </section>
 
+<section id="landmarks">
+  <span class="n">12</span><span class="h">Landmarks<i>A short history</i></span>
+  <div class="body"><div class="lm" id="lm"></div></div>
+</section>
+
 <section id="reference">
-  <span class="n">12</span><span class="h">Quick reference</span>
+  <span class="n">13</span><span class="h">Quick reference</span>
   <div class="body">
     <table>
       <thead><tr><th>Species</th><th>Gesture</th><th>State shown</th><th>Steps</th><th>Blind use</th></tr></thead>
@@ -156,7 +167,7 @@ const S = [
   feel:'Two events, down and up. The best ones click on the way down and say almost nothing on the way up.',
   alike:'Latching push button: same gesture, but it stays down.',
   habitat:['Braun ET66 calculator (Dietrich Lubs, 1987): convex keys, colour-coded by function.','Doorbells, everywhere.','The buttons of the teenage engineering TP-7.'],
-  mine:'—',
+  mine:'—', photo:{"file": "Dieter Rams i Dieter Lubs- Calculator Braun ET66-1987.dhub.jpg", "alt": "Braun ET66 calculator, 1987, shown at the Disseny Hub Barcelona", "author": "Kippelboy", "lic": "CC BY-SA 3.0", "licUrl": "https://creativecommons.org/licenses/by-sa/3.0/"},
   draw:'momentary'},
  {id:'latching', n:'04', name:'Latching push button', latin:'Pulsator retentus', gesture:'Press', state:'Yes, by height', steps:'2', blind:'Yes, if the height difference is clear',
   identify:'Press once, it stays down. Press again, it comes back up. The difference in height is the only sign of state.',
@@ -211,7 +222,7 @@ const S = [
   feel:'A row of clicks. The spacing and the strength of the click are the character of the whole object.',
   alike:'Continuous rotary (same gesture, no clicks). Wheel (clicks too, but no end).',
   habitat:['The aperture ring of a Leica M lens: one click per stop.','The function selector of the Nagra 4.2: TEST, RECORD, PLAYBACK, each a position you can feel.'],
-  mine:'TapeMixer: the encoders of the Console 1, stepping through channels.',
+  mine:'TapeMixer: the encoders of the Console 1, stepping through channels.', photo:{"file": "Leica-m3 hg.JPG", "alt": "Leica M3, 1954", "author": "Hannes Grobe", "lic": "CC BY 3.0", "licUrl": "https://creativecommons.org/licenses/by/3.0/"},
   draw:'detent'},
  {id:'rotary', n:'09', name:'Continuous rotary', latin:'Rota continua', gesture:'Turn', state:'Yes, by angle', steps:'Continuous, with end stops', blind:'By end stops only',
   identify:'A knob that turns smoothly between two stops. Its angle is the value, and the stops are its zero and its maximum.',
@@ -237,6 +248,103 @@ const S = [
   draw:'wheel'}
 ];
 
+const PH = p => `<figure class="photo"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(p.file.replace(/ /g,'_'))}?width=840" alt="${p.alt}" loading="lazy"><figcaption class="meta">${p.alt}. Photo: ${p.author}, <a href="${p.licUrl}">${p.lic}</a>, via <a href="https://commons.wikimedia.org/wiki/File:${encodeURIComponent(p.file.replace(/ /g,'_'))}">Wikimedia Commons</a>. Converted to greyscale.</figcaption></figure>`;
+const LM = [
+ {
+  "year": "1950s",
+  "what": "Nagra recorders",
+  "who": "Stefan Kudelski, Switzerland",
+  "why": "Toggles, selectors and level knobs, each with its label engraved around it on the plate. The control panel as a technical drawing.",
+  "link": "toggle",
+  "linkName": "toggle switch"
+ },
+ {
+  "year": "1954",
+  "what": "Leica M3",
+  "who": "Leitz, Wetzlar",
+  "why": "A bayonet mount and lens rings that click: controls operated by feel, with the eye on the viewfinder.",
+  "link": "detent",
+  "linkName": "rotary with detents"
+ },
+ {
+  "year": "1956",
+  "what": "Braun SK 4",
+  "who": "Hans Gugelot and Dieter Rams, Braun",
+  "why": "The controls of a radiogram set out as a clean composition on the top, under a clear lid.",
+  "link": "rotary",
+  "linkName": "continuous rotary",
+  "photo": {
+   "file": "1956 Braun Phonosuper SK4 Schneewittchensarg.JPG",
+   "alt": "Braun SK 4 radiogram, 1956",
+   "author": "Alf van Beem",
+   "lic": "CC0 1.0",
+   "licUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+  }
+ },
+ {
+  "year": "1958",
+  "what": "Braun T3 pocket radio",
+  "who": "Dieter Rams, Braun",
+  "why": "A tuning wheel as the face of the object.",
+  "link": "rotary",
+  "linkName": "continuous rotary"
+ },
+ {
+  "year": "1969",
+  "what": "Olivetti Valentine",
+  "who": "Ettore Sottsass and Perry King, Olivetti",
+  "why": "A typewriter carried like a bag: a keyboard made casual.",
+  "link": "momentary",
+  "linkName": "momentary push button",
+  "photo": {
+   "file": "Olivetti Valentine.jpg",
+   "alt": "Olivetti Valentine typewriter, 1969",
+   "author": "Pentsilea (Italian Wikipedia)",
+   "lic": "public domain",
+   "licUrl": "https://commons.wikimedia.org/wiki/File:Olivetti_Valentine.jpg"
+  }
+ },
+ {
+  "year": "1979",
+  "what": "Walkman TPS-L2",
+  "who": "Sony",
+  "why": "Piano-key transport buttons, in a pocket.",
+  "link": "latching",
+  "linkName": "latching push button"
+ },
+ {
+  "year": "1987",
+  "what": "Braun ET66",
+  "who": "Dietrich Lubs, with Dieter Rams, Braun",
+  "why": "Convex keys, colour-coded by function: the button as information.",
+  "link": "momentary",
+  "linkName": "momentary push button"
+ },
+ {
+  "year": "2001",
+  "what": "iPod",
+  "who": "Apple",
+  "why": "A wheel for scrolling long lists; from 2004 a click wheel that did not turn at all.",
+  "link": "wheel",
+  "linkName": "wheel"
+ },
+ {
+  "year": "2011",
+  "what": "OP-1",
+  "who": "teenage engineering",
+  "why": "Colour-coded encoders mapped to colours on the screen.",
+  "link": "detent",
+  "linkName": "rotary with detents"
+ },
+ {
+  "year": "2023",
+  "what": "TP-7",
+  "who": "teenage engineering",
+  "why": "A motorised reel that turns while it records and can be held to scrub.",
+  "link": "wheel",
+  "linkName": "wheel"
+ }
+];
 const DRAW = {
  momentary:`<rect x="40" y="90" width="200" height="20"/><rect x="100" y="50" width="80" height="40"/><path d="M120 90v-8m40 8v-8"/><path d="M140 112v20" stroke-dasharray="3 3"/><path d="M120 120q20 -12 40 0" stroke-dasharray="3 3"/>`,
  latching:`<rect x="40" y="90" width="200" height="20"/><rect x="70" y="50" width="60" height="40"/><rect x="160" y="74" width="60" height="16"/><text x="100" y="140" text-anchor="middle">up</text><text x="190" y="140" text-anchor="middle">down</text>`,
@@ -255,6 +363,7 @@ document.getElementById('species').innerHTML = S.map(s=>`
   <span class="n">${s.n}</span><span class="h">${s.name}<i>${s.latin}</i></span>
   <div class="body">
     <figure><svg width="280" height="150" viewBox="0 0 280 150" role="img" aria-label="Schematic drawing of a ${s.name.toLowerCase()}"><g fill="none" stroke="#111" stroke-width="1" font-family="OCR B, monospace" font-size="10">${DRAW[s.draw]}</g></svg><div class="fig-cap">Schematic, not to scale.</div></figure>
+    ${s.photo?PH(s.photo):''}
     <div class="rows">
       <span class="k">Identify</span><span>${s.identify}</span>
       <span class="k">Use when</span><span>${list(s.yes)}</span>
@@ -271,6 +380,8 @@ document.getElementById('species').innerHTML = S.map(s=>`
 document.querySelectorAll('#species svg text').forEach(t=>{t.setAttribute('fill','#111');t.setAttribute('stroke','none')});
 
 document.getElementById('ref-rows').innerHTML = S.map(s=>`<tr><td><a href="#${s.id}">${s.name}</a></td><td>${s.gesture}</td><td>${s.state}</td><td>${s.steps}</td><td>${s.blind}</td></tr>`).join('');
+
+document.getElementById('lm').innerHTML = LM.map(l=>`<span class="y">${l.year}</span><div><p><b>${l.what}</b>. ${l.who}.</p><p>${l.why} <a href="#${l.link}">See ${l.linkName}.</a></p>${l.photo?PH(l.photo):''}</div>`).join('');
 
 /* identification key */
 const KEY = {

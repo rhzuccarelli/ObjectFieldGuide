@@ -47,6 +47,12 @@ th{font-weight:700}
 @media print{.sheet{padding:0}.labs,.key,.btn{display:none}section{break-inside:avoid}}
 .lab input[type=range]{width:100%;accent-color:#111}
 .lab label{display:block;margin-top:8px}
+.photo{margin:0 0 16px;max-width:420px}
+.photo img{display:block;width:100%;height:auto;filter:grayscale(1) contrast(1.05);background:rgba(17,17,17,.06)}
+.photo figcaption{margin-top:4px}
+.lm{display:grid;grid-template-columns:72px minmax(0,1fr);row-gap:20px;column-gap:16px}
+.lm .y{font-family:var(--mono)}
+.lm p{margin:0 0 4px;max-width:620px}
 .lab input[type=number]{font:14px/20px var(--mono);width:100px;border:1px solid var(--ink);background:transparent;padding:4px 6px;border-radius:0}
 .out{font-family:var(--mono)}
 </style>
@@ -104,8 +110,10 @@ th{font-weight:700}
   </div>
 </section>
 
+<section id="landmarks"><span class="n">10</span><span class="h">Landmarks<i>A short history</i></span><div class="body"><div class="lm" id="lm"></div></div></section>
+
 <section id="reference">
-  <span class="n">10</span><span class="h">Quick reference</span>
+  <span class="n">11</span><span class="h">Quick reference</span>
   <div class="body">
     <table>
       <thead><tr><th>System</th><th>Job</th><th>What it says</th></tr></thead>
@@ -288,6 +296,73 @@ const S = [
 ];
 const F = [["recognise", "Recognise"], ["yes", "Use when"], ["no", "Avoid when"], ["numbers", "Numbers"], ["cad", "In CAD"], ["says", "What it says"], ["alike", "Look-alikes"], ["habitat", "Habitat"], ["mine", "In my work"]];
 const RK = ["job", "says"];
+const LM = [
+ {
+  "year": "c. 1570",
+  "what": "I quattro libri dell'architettura",
+  "who": "Andrea Palladio",
+  "why": "Seven recommended room shapes, all simple ratios or √2. Proportion as a short list of good answers.",
+  "link": "simple",
+  "linkName": "simple ratios"
+ },
+ {
+  "year": "1786",
+  "what": "The √2 sheet",
+  "who": "Georg Christoph Lichtenberg",
+  "why": "Noted that a sheet in the ratio 1:√2 keeps its shape when folded in half. The idea waited more than a century for a standard.",
+  "link": "root2",
+  "linkName": "√2"
+ },
+ {
+  "year": "1877",
+  "what": "Preferred numbers",
+  "who": "Charles Renard, French army",
+  "why": "A geometric series to cut the number of balloon cable sizes. Later ISO 3.",
+  "link": "renard",
+  "linkName": "preferred numbers"
+ },
+ {
+  "year": "1922",
+  "what": "DIN 476",
+  "who": "Walter Porstmann",
+  "why": "The A-series of paper sizes, built on √2 and A0 = 1 m². Adopted internationally as ISO 216.",
+  "link": "root2",
+  "linkName": "√2"
+ },
+ {
+  "year": "1948",
+  "what": "Le Modulor",
+  "who": "Le Corbusier",
+  "why": "A scale of dimensions from the human body and the golden ratio. Influential, and argued about ever since.",
+  "link": "human",
+  "linkName": "human scale"
+ },
+ {
+  "year": "1958",
+  "what": "The Lego stud-and-tube brick",
+  "who": "Godtfred Kirk Christiansen, Lego",
+  "why": "The patent that made every brick fit every other brick. A module as a business model.",
+  "link": "module",
+  "linkName": "module"
+ },
+ {
+  "year": "1996",
+  "what": "Eurorack",
+  "who": "Dieter Doepfer, A-100",
+  "why": "A module width (HP) and a height (3U) that hundreds of makers now share.",
+  "link": "module",
+  "linkName": "module"
+ },
+ {
+  "year": "2022",
+  "what": "Gridfinity",
+  "who": "Zack Freedman",
+  "why": "A 42 mm grid for 3D-printed storage, released open so anyone can make parts that fit.",
+  "link": "module",
+  "linkName": "module"
+ }
+];
+const PH = p => `<figure class="photo"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(p.file.replace(/ /g,'_'))}?width=840" alt="${p.alt}" loading="lazy"><figcaption class="meta">${p.alt}. Photo: ${p.author}, <a href="${p.licUrl}">${p.lic}</a>, via <a href="https://commons.wikimedia.org/wiki/File:${encodeURIComponent(p.file.replace(/ /g,'_'))}">Wikimedia Commons</a>. Converted to greyscale.</figcaption></figure>`;
 const R=(x,y,w,h)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}"/>`;
 const DRAW={
  module:()=>{let s='';for(let i=0;i<6;i++)for(let j=0;j<3;j++)s+=`<circle cx="${70+i*24}" cy="${40+j*24}" r="7"/>`;return R(56,26,148,76)+s},
@@ -304,11 +379,13 @@ document.getElementById('species').innerHTML = S.map(s=>`
   <span class="n">${s.n}</span><span class="h">${s.name}<i>${s.latin}</i></span>
   <div class="body">
     <figure><svg width="280" height="150" viewBox="0 0 280 150" role="img" aria-label="Schematic drawing: ${s.name}"><g fill="none" stroke="#111" stroke-width="1">${DRAW[s.id]()}</g></svg><div class="fig-cap">Schematic, not to scale.</div></figure>
+    ${s.photo?PH(s.photo):''}
     <div class="rows">${F.map(f=>`<span class="k">${f[1]}</span><span>${val(s[f[0]])}</span>`).join('')}</div>
   </div>
 </section>`).join('');
 document.querySelectorAll('#species svg text').forEach(t=>{t.setAttribute('fill','#111');t.setAttribute('stroke','none');t.setAttribute('font-family','OCR B, monospace');t.setAttribute('font-size','10')});
 document.getElementById('ref-rows').innerHTML = S.map(s=>`<tr><td><a href="#${s.id}">${s.name}</a></td>${RK.map(k=>`<td>${s[k]}</td>`).join('')}</tr>`).join('');
+if(LM.length) document.getElementById('lm').innerHTML = LM.map(l=>`<span class="y">${l.year}</span><div><p><b>${l.what}</b>. ${l.who}.</p><p>${l.why}${l.link?` <a href="#${l.link}">See ${l.linkName}.</a>`:''}</p>${l.photo?PH(l.photo):''}</div>`).join('');
 const R10=[1,1.25,1.6,2,2.5,3.15,4,5,6.3,8], R20=[1,1.12,1.25,1.4,1.6,1.8,2,2.24,2.5,2.8,3.15,3.55,4,4.5,5,5.6,6.3,7.1,8,9];
 function nearest(x,ser){if(!(x>0))return '—';const e=Math.floor(Math.log10(x));let best=null,bd=1e9;for(const k of [e-1,e,e+1])for(const v of ser){const c=v*10**k,d=Math.abs(Math.log(c/x));if(d<bd){bd=d;best=c}}return +best.toPrecision(3)}
 const fmt=v=>typeof v==='number'?String(v).replace('.',',')+' mm':v;

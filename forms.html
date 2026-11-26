@@ -47,6 +47,12 @@ th{font-weight:700}
 @media print{.sheet{padding:0}.labs,.key,.btn{display:none}section{break-inside:avoid}}
 .lab input[type=range]{width:100%;accent-color:#111}
 .lab label{display:block;margin-top:8px}
+.photo{margin:0 0 16px;max-width:420px}
+.photo img{display:block;width:100%;height:auto;filter:grayscale(1) contrast(1.05);background:rgba(17,17,17,.06)}
+.photo figcaption{margin-top:4px}
+.lm{display:grid;grid-template-columns:72px minmax(0,1fr);row-gap:20px;column-gap:16px}
+.lm .y{font-family:var(--mono)}
+.lm p{margin:0 0 4px;max-width:620px}
 .lab input[type=number]{font:14px/20px var(--mono);width:100px;border:1px solid var(--ink);background:transparent;padding:4px 6px;border-radius:0}
 .out{font-family:var(--mono)}
 </style>
@@ -102,8 +108,10 @@ th{font-weight:700}
   </div>
 </section>
 
+<section id="landmarks"><span class="n">11</span><span class="h">Landmarks<i>A short history</i></span><div class="body"><div class="lm" id="lm"></div></div></section>
+
 <section id="reference">
-  <span class="n">11</span><span class="h">Quick reference</span>
+  <span class="n">12</span><span class="h">Quick reference</span>
   <div class="body">
     <table>
       <thead><tr><th>Species</th><th>Reads as</th><th>Light</th><th>FFF</th></tr></thead>
@@ -141,6 +149,13 @@ const S = [
   "habitat": [
    "Braun products of the 1950s and 60s: boxes and cylinders with controls set into them."
   ],
+  "photo": {
+   "file": "1956 Braun Phonosuper SK4 Schneewittchensarg.JPG",
+   "alt": "Braun SK 4 radiogram, 1956",
+   "author": "Alf van Beem",
+   "lic": "CC0 1.0",
+   "licUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
   "mine": "Sable, Phare and Solid: three primitives cast in concrete."
  },
  {
@@ -224,6 +239,13 @@ const S = [
    "Piet Hein's plan for Sergels torg, Stockholm.",
    "The Superellipse table by Piet Hein and Bruno Mathsson."
   ],
+  "photo": {
+   "file": "Sergels torg-Stockholm-DSC 0115w.jpg",
+   "alt": "Sergels torg, Stockholm: the roundabout is a superellipse",
+   "author": "Peter Haas",
+   "lic": "CC BY-SA 3.0",
+   "licUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+  },
   "mine": "—"
  },
  {
@@ -310,6 +332,57 @@ const S = [
 ];
 const F = [["recognise", "Recognise"], ["yes", "Use when"], ["no", "Avoid when"], ["numbers", "Numbers"], ["cad", "In CAD"], ["light", "Light"], ["alike", "Look-alikes"], ["habitat", "Habitat"], ["mine", "In my work"]];
 const RK = ["reads", "light", "fff"];
+const LM = [
+ {
+  "year": "1953–1968",
+  "what": "Hochschule für Gestaltung Ulm",
+  "who": "Max Bill, Otl Aicher, Inge Aicher-Scholl, Hans Gugelot and others",
+  "why": "The school that, with Braun, turned the primitive into a method: box, cylinder, a grid of controls.",
+  "link": "primitive",
+  "linkName": "primitive"
+ },
+ {
+  "year": "1956",
+  "what": "Braun SK 4",
+  "who": "Hans Gugelot and Dieter Rams, Braun",
+  "why": "A box with a clear lid: the primitive as the whole idea.",
+  "link": "primitive",
+  "linkName": "primitive"
+ },
+ {
+  "year": "1960s",
+  "what": "Bézier curves",
+  "who": "Pierre Bézier at Renault (and Paul de Casteljau at Citroën)",
+  "why": "Curves defined by control points so car bodies could be described to machines. Every spline in CAD descends from them.",
+  "link": "g2",
+  "linkName": "continuous curvature"
+ },
+ {
+  "year": "1958–1960",
+  "what": "Sergels torg, Stockholm",
+  "who": "Piet Hein, with architect David Helldén",
+  "why": "A square that is neither round nor rectangular: the superellipse, at the scale of a city.",
+  "link": "superellipse",
+  "linkName": "superellipse"
+ },
+ {
+  "year": "2012",
+  "what": "iPhone 5",
+  "who": "Apple",
+  "why": "Diamond-cut chamfers as the only ornament of a plain aluminium block.",
+  "link": "chamfer",
+  "linkName": "chamfer"
+ },
+ {
+  "year": "2013",
+  "what": "iOS 7 icon shape",
+  "who": "Apple",
+  "why": "Corners with continuous curvature made a visible point of something usually invisible.",
+  "link": "g2",
+  "linkName": "continuous curvature"
+ }
+];
+const PH = p => `<figure class="photo"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(p.file.replace(/ /g,'_'))}?width=840" alt="${p.alt}" loading="lazy"><figcaption class="meta">${p.alt}. Photo: ${p.author}, <a href="${p.licUrl}">${p.lic}</a>, via <a href="https://commons.wikimedia.org/wiki/File:${encodeURIComponent(p.file.replace(/ /g,'_'))}">Wikimedia Commons</a>. Converted to greyscale.</figcaption></figure>`;
 const R=(x,y,w,h,r=0)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}"/>`;
 const DRAW={
  primitive:()=>R(40,50,60,70)+`<ellipse cx="150" cy="56" rx="26" ry="8"/><path d="M124 56v60M176 56v60"/><path d="M124 116a26 8 0 0 0 52 0"/><circle cx="225" cy="88" r="30"/>`,
@@ -327,11 +400,13 @@ document.getElementById('species').innerHTML = S.map(s=>`
   <span class="n">${s.n}</span><span class="h">${s.name}<i>${s.latin}</i></span>
   <div class="body">
     <figure><svg width="280" height="150" viewBox="0 0 280 150" role="img" aria-label="Schematic drawing: ${s.name}"><g fill="none" stroke="#111" stroke-width="1">${DRAW[s.id]()}</g></svg><div class="fig-cap">Schematic, not to scale.</div></figure>
+    ${s.photo?PH(s.photo):''}
     <div class="rows">${F.map(f=>`<span class="k">${f[1]}</span><span>${val(s[f[0]])}</span>`).join('')}</div>
   </div>
 </section>`).join('');
 document.querySelectorAll('#species svg text').forEach(t=>{t.setAttribute('fill','#111');t.setAttribute('stroke','none');t.setAttribute('font-family','OCR B, monospace');t.setAttribute('font-size','10')});
 document.getElementById('ref-rows').innerHTML = S.map(s=>`<tr><td><a href="#${s.id}">${s.name}</a></td>${RK.map(k=>`<td>${s[k]}</td>`).join('')}</tr>`).join('');
+if(LM.length) document.getElementById('lm').innerHTML = LM.map(l=>`<span class="y">${l.year}</span><div><p><b>${l.what}</b>. ${l.who}.</p><p>${l.why}${l.link?` <a href="#${l.link}">See ${l.linkName}.</a>`:''}</p>${l.photo?PH(l.photo):''}</div>`).join('');
 const k=8; /* px per mm */
 function wall(){const r=+document.getElementById('f-r').value,t=+document.getElementById('f-t').value,ri=Math.max(0,r-t);
  document.getElementById('f-r-v').textContent=String(r).replace('.',',')+' mm';document.getElementById('f-t-v').textContent=String(t).replace('.',',')+' mm';
