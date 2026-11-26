@@ -14,8 +14,8 @@ A companion to the [Sound Field Guide](https://github.com/rhzuccarelli/SoundFiel
 | II | Snap-fits | — | in preparation |
 | III | Actuators | `actuators.html` | Rev. A |
 | IV | Buttons | — | in preparation |
-| V | Proportions | — | in preparation |
-| VI | Forms | — | in preparation |
+| V | Proportions | `proportions.html` | Rev. A |
+| VI | Forms | `forms.html` | Rev. A |
 
 ## Actuators — `actuators.html`
 
@@ -27,15 +27,33 @@ How a person asks an object to do something, and how the object answers.
 4. **Lab: feel and sound.** Four synthesised actuators (push, toggle, rotary with switchable detents, slider) with Web Audio clicks, to compare what happens at the end of each gesture.
 5. **Quick reference.** One table comparing all species.
 
+## Proportions — `proportions.html`
+
+Choosing dimensions without deciding each one.
+
+1. **Three questions.** Does it have to fit something? Does it come in sizes? Is it only about how it looks?
+2. **Six systems:** module (Lego, Gridfinity, Eurorack, 19-inch racks), √2, simple ratios (and their musical intervals), the golden ratio (with a warning), Renard preferred numbers and human scale.
+3. **Lab: snap a dimension.** Type a size and get the nearest R10 and R20 values and the nearest multiple of your module; draw a face in any ratio.
+4. **Quick reference.**
+
+## Forms — `forms.html`
+
+Edges, corners and volumes. Chosen for the hand and for light.
+
+1. **Three questions.** Where does the light go? Where does the hand go? How is it made?
+2. **Seven species:** primitive, constant radius, continuous curvature (G2), superellipse, chamfer, sharp edge and draft.
+3. **Lab: corners.** What an outer radius does to a wall of a given thickness, and the superellipse from circle to square.
+4. **Quick reference.**
+
 ## The species card
 
 Every entry has the same fields:
 
 - **Identify.** How to recognise it on an object.
 - **Use when / Avoid when.** The reasoning.
-- **Proportion.** Rules and starting dimensions. Values marked `[verify]` come from common practice and should be tested on a printed sample.
-- **Make.** How it is built: FFF, moulded, off the shelf.
-- **Feel and sound.** For anything a hand touches.
+- **Proportion / Numbers.** Rules and starting dimensions. Values marked `[verify]` come from common practice and should be tested on a printed sample.
+- **Make / In CAD.** How it is built, or how to apply it in Onshape.
+- **Feel and sound / What it says / Light.** The sensory field changes by volume: sound for actuators, character for proportions, light for forms.
 - **Look-alikes.** Which species it is confused with, and the difference.
 - **Habitat.** Real products where it lives, with designer and year.
 - **In my work.** Where it appears in my own projects.

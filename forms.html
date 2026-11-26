@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forms — Object Field Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<style>
+@font-face{font-family:"OCR B";src:url(assets/fonts/ocr-b.woff2) format("woff2");font-weight:400}
+:root{--paper:#f2f2f0;--ink:#111;--muted:rgba(17,17,17,.75);--hair:rgba(17,17,17,.2);--sans:"Schibsted Grotesk",Arial,sans-serif;--mono:"OCR B",ui-monospace,Menlo,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:14px/20px var(--sans)}
+a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.sheet{max-width:1040px;margin:0 auto;padding:48px}
+.m{font-family:var(--mono)}
+.meta{font-size:10px;line-height:14px;color:var(--muted)}
+.head{display:grid;grid-template-columns:56px 180px minmax(0,1fr) auto;font:10px/14px var(--mono);color:var(--muted)}
+.title{display:grid;grid-template-columns:56px minmax(0,1fr);align-items:baseline;margin-top:28px}
+.title .t{display:flex;align-items:baseline;gap:20px;flex-wrap:wrap}
+h1{margin:0;font-size:56px;line-height:56px;font-weight:500;letter-spacing:-.02em}
+.sub{margin:0;font-style:italic}
+section{display:grid;grid-template-columns:56px 180px minmax(0,1fr);border-top:1px solid var(--ink);padding-top:12px;margin-top:28px}
+section>.n{font-family:var(--mono)}
+section>.h{font-weight:700}
+section>.h i{display:block;font-weight:400;color:var(--muted)}
+.body p{margin:0 0 12px;max-width:620px}
+.rows{display:grid;grid-template-columns:120px minmax(0,1fr);row-gap:8px;column-gap:16px}
+.rows>.k{color:var(--muted)}
+.rows ul{margin:0;padding-left:16px}
+figure{margin:0 0 16px}
+figure svg{display:block;max-width:100%;height:auto}
+.fig-cap{font-size:10px;line-height:14px;color:var(--muted);margin-top:4px}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;vertical-align:top;padding:6px 12px 6px 0;border-top:1px solid var(--hair)}
+th{font-weight:700}
+.btn{font:14px/20px var(--sans);background:transparent;color:var(--ink);border:1px solid var(--ink);padding:6px 12px;cursor:pointer;border-radius:0;min-height:36px}
+.btn:hover{background:rgba(17,17,17,.06)}
+.btn:focus-visible,.widget:focus-visible,input:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.key{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px}
+.labs{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:24px}
+.lab{border-top:1px solid var(--hair);padding-top:12px}
+.lab h3{margin:0 0 8px;font-size:14px;line-height:20px;font-weight:700}
+.widget{display:block;margin:8px 0;touch-action:none;cursor:pointer;user-select:none}
+.foot{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--hair);padding-top:12px;margin-top:28px}
+@media (max-width:760px){.sheet{padding:24px}section{grid-template-columns:40px minmax(0,1fr)}section>.body{grid-column:1/-1;margin-top:8px}.head{grid-template-columns:40px minmax(0,1fr)}.head span:nth-child(n+3){grid-column:2}.title{grid-template-columns:40px minmax(0,1fr)}.rows{grid-template-columns:1fr}.rows>.k{margin-top:4px}}
+@media print{.sheet{padding:0}.labs,.key,.btn{display:none}section{break-inside:avoid}}
+.lab input[type=range]{width:100%;accent-color:#111}
+.lab label{display:block;margin-top:8px}
+.lab input[type=number]{font:14px/20px var(--mono);width:100px;border:1px solid var(--ink);background:transparent;padding:4px 6px;border-radius:0}
+.out{font-family:var(--mono)}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<div class="head"><span>00.0</span><span>Volume VI</span><span>OFG-06 · Forms · Rev. A</span><span><a href="index.html">Contents</a></span></div>
+
+<div class="title">
+  <span class="m meta">VI</span>
+  <div class="t"><h1>Forms</h1><p class="sub">Edges, corners and volumes. Chosen for the hand and for light.</p></div>
+</div>
+
+<section id="read">
+  <span class="n">01</span><span class="h">How to read this volume</span>
+  <div class="body"><p>Form is what an object looks like before anyone reads a label. Each entry here is a species of edge, corner or volume: how to recognise it, when it is right, how it catches light, and how it behaves when you actually make it. Forms are chosen for the hand and for light first, and for the screen last.</p>
+<p>Numbers marked <span class="m">[verify]</span> are starting points, not laws. <em>Light is the only reviewer that never lies about a radius.</em></p></div>
+</section>
+
+<section id="questions">
+  <span class="n">02</span><span class="h">Three questions</span>
+  <div class="body">
+    <div class="rows">
+      <span class="k m">02.1</span><span><b>Where does the light go?</b> An edge is seen as the line of light it makes. A radius makes a soft band, a chamfer a sharp line, a sharp edge almost nothing.</span>
+      <span class="k m">02.2</span><span><b>Where does the hand go?</b> Edges that are held need a radius. Edges that are only seen can be as sharp as the material allows.</span>
+      <span class="k m">02.3</span><span><b>How is it made?</b> Every process has edges it likes: FFF prints chamfers better than fillets on the bed, moulds need draft, metal can hold a sharp edge that plastic cannot.</span>
+    </div>
+  </div>
+</section>
+
+<div id="species"></div>
+
+<section id="lab">
+  <span class="n">10</span><span class="h">Lab: corners</span>
+  <div class="body">
+    <p>Two corners to play with. The first shows what a radius does to a wall; the second, how a superellipse moves between a circle and a square.</p>
+    <div class="labs">
+      <div class="lab">
+        <h3>Radius and wall</h3>
+        <svg id="f-wall" width="200" height="200" viewBox="0 0 200 200" role="img" aria-label="Corner of a shelled part"></svg>
+        <label class="meta" for="f-r">Outer radius <span class="out" id="f-r-v"></span></label><input id="f-r" type="range" min="0" max="20" step="0.5" value="6">
+        <label class="meta" for="f-t">Wall <span class="out" id="f-t-v"></span></label><input id="f-t" type="range" min="0.8" max="6" step="0.2" value="2.4">
+        <p class="meta" id="f-wall-out" aria-live="polite"></p>
+      </div>
+      <div class="lab">
+        <h3>Superellipse</h3>
+        <svg id="f-se" width="200" height="200" viewBox="0 0 200 200" role="img" aria-label="Superellipse"></svg>
+        <label class="meta" for="f-n">Exponent n <span class="out" id="f-n-v"></span></label><input id="f-n" type="range" min="2" max="10" step="0.1" value="2.5">
+        <p class="meta">Dashed: the circle (n = 2) and the square it tends to.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reference">
+  <span class="n">11</span><span class="h">Quick reference</span>
+  <div class="body">
+    <table>
+      <thead><tr><th>Species</th><th>Reads as</th><th>Light</th><th>FFF</th></tr></thead>
+      <tbody id="ref-rows"></tbody>
+    </table>
+  </div>
+</section>
+
+<div class="foot meta"><span>Object Field Guide · Volume VI · Forms · Rev. A</span><span>zuccarelli · barcelona</span></div>
+</div>
+
+<script>
+const S = [
+ {
+  "id": "primitive",
+  "n": "03",
+  "name": "Primitive",
+  "latin": "Forma prima",
+  "reads": "Certain, archetypal",
+  "light": "Large flat or evenly curved areas",
+  "fff": "Easy",
+  "recognise": "The object is a box, a cylinder, a sphere or a cone, with little added. You can describe it in one word.",
+  "yes": [
+   "When the function is clear and the object should not compete with it.",
+   "Families of products: primitives combine without arguing."
+  ],
+  "no": [
+   "When the object must fit a hand closely. Primitives ask the hand to adapt."
+  ],
+  "numbers": [
+   "Decide the proportion of the primitive first (see Volume V), then every detail is subtraction."
+  ],
+  "cad": "Start every model from one primitive sketch extruded or revolved, and keep the feature tree short. If it needs twenty features to look simple, it is not simple.",
+  "alike": "Superellipse (a primitive softened, not a new form).",
+  "habitat": [
+   "Braun products of the 1950s and 60s: boxes and cylinders with controls set into them."
+  ],
+  "mine": "Sable, Phare and Solid: three primitives cast in concrete."
+ },
+ {
+  "id": "fillet",
+  "n": "04",
+  "name": "Constant radius",
+  "latin": "Radius constans",
+  "reads": "Friendly, held",
+  "light": "A soft band whose width shows the radius",
+  "fff": "Fine on walls; overhangs on the bed",
+  "recognise": "Edges rounded with an arc of one radius. The highlight along the edge has a constant width.",
+  "yes": [
+   "Edges the hand touches.",
+   "Shelled parts (enclosures), where the radius keeps the wall even around the corner."
+  ],
+  "no": [
+   "Edges facing down on the print bed in FFF: the fillet starts as an overhang. Use a chamfer there."
+  ],
+  "numbers": [
+   "In a shelled part, inner radius = outer radius − wall. If the outer radius is smaller than the wall, the inner corner is sharp and the wall is thicker at the corner. See the lab.",
+   "Choose a few radii for the whole object, not one per edge. [verify]"
+  ],
+  "cad": "Fillet last, in as few features as possible, with the same radius chosen from a short list. Shell after filleting the outside, so the inside follows.",
+  "alike": "Continuous curvature (same idea, without the visible jump where the arc meets the flat).",
+  "habitat": [
+   "Almost every hand-held plastic product."
+  ],
+  "mine": "—"
+ },
+ {
+  "id": "g2",
+  "n": "05",
+  "name": "Continuous curvature",
+  "latin": "Curvatura continua",
+  "reads": "Refined, liquid",
+  "light": "A highlight that flows without a kink",
+  "fff": "Same as a fillet",
+  "recognise": "A rounded corner where you cannot see where the flat ends and the curve begins. A circular fillet jumps from zero curvature to a fixed one; this one ramps up.",
+  "yes": [
+   "Surfaces where reflections are part of the quality: glossy, anodised, painted.",
+   "Large, visible corners where a circular fillet would show a 'kink' of light."
+  ],
+  "no": [
+   "Matte printed parts with visible layers: the difference disappears under the texture."
+  ],
+  "numbers": [
+   "The terms: G0 touching, G1 tangent (a normal fillet), G2 continuous curvature, G3 continuous change of curvature.",
+   "A G2 corner needs more space than a circular fillet of similar look. [verify]"
+  ],
+  "cad": "Use curvature-continuous fillets (Onshape offers a conic or curvature option on fillets), or build the corner from splines with curvature continuity, and check it with a curvature comb.",
+  "alike": "Constant radius (G1: the jump in curvature shows in reflections). Superellipse (a family of shapes with similar softness).",
+  "habitat": [
+   "Car body styling surfaces, built to G2 or better because paint shows every reflection.",
+   "Apple hardware and app icons, known for continuous-curvature corners."
+  ],
+  "mine": "—"
+ },
+ {
+  "id": "superellipse",
+  "n": "06",
+  "name": "Superellipse",
+  "latin": "Superellipsis Heinii",
+  "reads": "Between a square and a circle",
+  "light": "Corners that turn slowly",
+  "fff": "Easy, if drawn as a sketch",
+  "recognise": "A shape between a rectangle and an ellipse: |x/a|ⁿ + |y/b|ⁿ = 1. With n = 2 it is an ellipse; as n grows it becomes a rectangle with soft corners.",
+  "yes": [
+   "Plans of tables, trays, dials and faces that should feel neither boxy nor round.",
+   "When a rounded rectangle looks pieced together."
+  ],
+  "no": [
+   "When parts must stack or fit a module: the shape has no straight sides to align."
+  ],
+  "numbers": [
+   "Piet Hein used n = 2.5 for Sergels torg in Stockholm.",
+   "n between about 2.5 and 5 is the useful range for objects. [verify]"
+  ],
+  "cad": "Draw it as a spline through calculated points (or a FeatureScript that generates it from a, b and n), then extrude. The lab shows the shape for each n.",
+  "alike": "Continuous curvature corners (a rectangle with soft corners), constant radius (circular corners).",
+  "habitat": [
+   "Piet Hein's plan for Sergels torg, Stockholm.",
+   "The Superellipse table by Piet Hein and Bruno Mathsson."
+  ],
+  "mine": "—"
+ },
+ {
+  "id": "chamfer",
+  "n": "07",
+  "name": "Chamfer",
+  "latin": "Angulus sectus",
+  "reads": "Precise, machined",
+  "light": "A thin bright line",
+  "fff": "Best on bed edges",
+  "recognise": "The edge is cut by a flat face, usually at 45°. It catches light as a single, sharp line.",
+  "yes": [
+   "Edges facing down in FFF: a 45° chamfer prints without support where a fillet would overhang.",
+   "When an edge should look exact rather than soft."
+  ],
+  "no": [
+   "Edges held for a long time: a chamfer is kinder than a sharp edge, but harder than a radius."
+  ],
+  "numbers": [
+   "45° is the default; shallower chamfers read as softer. A chamfer of about one layer-line width is invisible in FFF. [verify]"
+  ],
+  "cad": "Chamfer by distance, the same value on every edge of a family. On the first layer edges, a small chamfer also hides the squeezed first layer.",
+  "alike": "Constant radius (soft band of light instead of a line).",
+  "habitat": [
+   "The iPhone 5 (2012): diamond-cut chamfers as the jewellery of a plain block.",
+   "Machined parts in general: the chamfer is where the tool says hello."
+  ],
+  "mine": "—"
+ },
+ {
+  "id": "sharp",
+  "n": "08",
+  "name": "Sharp edge",
+  "latin": "Acies",
+  "reads": "Severe, technical",
+  "light": "Almost none: a change of tone",
+  "fff": "Limited by the layer lines",
+  "recognise": "No visible treatment. The edge is the meeting of two faces, and only the difference in their tone shows it.",
+  "yes": [
+   "Edges that are only seen, in materials that can hold them (metal, stone, glass).",
+   "When the object should look like a drawing of itself."
+  ],
+  "no": [
+   "Anything held. Anything that can chip."
+  ],
+  "numbers": [
+   "Even a 'sharp' edge has a radius; the question is whether you can see or feel it. [verify]"
+  ],
+  "cad": "Leave the edge without a feature, and check the process can actually make it.",
+  "alike": "A very small chamfer or radius (often the honest version of a sharp edge).",
+  "habitat": [
+   "Folded sheet-metal enclosures.",
+   "Cast stone and concrete, where the mould decides how sharp the edge can be."
+  ],
+  "mine": "Solid: the edges of a stone phone, as sharp as the mould allows."
+ },
+ {
+  "id": "draft",
+  "n": "09",
+  "name": "Draft",
+  "latin": "Angulus extractionis",
+  "reads": "Usually invisible",
+  "light": "A gradual change of tone up a wall",
+  "fff": "Not needed",
+  "recognise": "Walls that are not quite vertical: they lean a degree or two so the part can come out of its mould.",
+  "yes": [
+   "Anything moulded or cast: injection moulding, silicone moulds, concrete.",
+   "Prototypes printed in FFF that will later be moulded: draw the draft from the start."
+  ],
+  "no": [
+   "Parts that will only ever be printed or machined."
+  ],
+  "numbers": [
+   "1–2° on most moulded walls; more on textured walls and deep parts. [verify]"
+  ],
+  "cad": "Apply draft with a draft feature from the parting line, before fillets. Decide the parting line first: it is a line that will be visible on the object.",
+  "alike": "A tapered form chosen for looks (the angle is the same; the reason is not).",
+  "habitat": [
+   "Every injection-moulded part.",
+   "Every cast concrete object."
+  ],
+  "mine": "Sable, Phare and Solid: the concrete has to leave the mould."
+ }
+];
+const F = [["recognise", "Recognise"], ["yes", "Use when"], ["no", "Avoid when"], ["numbers", "Numbers"], ["cad", "In CAD"], ["light", "Light"], ["alike", "Look-alikes"], ["habitat", "Habitat"], ["mine", "In my work"]];
+const RK = ["reads", "light", "fff"];
+const R=(x,y,w,h,r=0)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}"/>`;
+const DRAW={
+ primitive:()=>R(40,50,60,70)+`<ellipse cx="150" cy="56" rx="26" ry="8"/><path d="M124 56v60M176 56v60"/><path d="M124 116a26 8 0 0 0 52 0"/><circle cx="225" cy="88" r="30"/>`,
+ fillet:()=>`<path d="M40 130V60a30 30 0 0 1 30-30h170"/><path d="M52 130V60a18 18 0 0 1 18-18h170" stroke-dasharray="3 3"/><text x="90" y="80">R30 / R18</text>`,
+ g2:()=>`<path d="M40 130V70C40 40 50 30 80 30h160"/><text x="96" y="80">G2</text><path d="M40 70h-8M80 30v-8" stroke-dasharray="2 2"/>`,
+ superellipse:()=>{const p=(n,cx,cy,a)=>{let d='';for(let i=0;i<=72;i++){const t=i/72*2*Math.PI,c=Math.cos(t),s=Math.sin(t);const x=cx+a*Math.sign(c)*Math.abs(c)**(2/n),y=cy+a*Math.sign(s)*Math.abs(s)**(2/n);d+=(i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)}return `<path d="${d}Z"/>`};return p(2,60,75,42)+p(2.5,140,75,42)+p(5,220,75,42)+`<text x="60" y="140" text-anchor="middle">n 2</text><text x="140" y="140" text-anchor="middle">n 2,5</text><text x="220" y="140" text-anchor="middle">n 5</text>`},
+ chamfer:()=>`<path d="M40 130V50l20-20h180"/><path d="M60 30l-4 4" /><text x="80" y="70">45°</text>`,
+ sharp:()=>`<path d="M40 130V30h200"/>`,
+ draft:()=>`<path d="M80 30l-6 100M200 30l6 100M80 30h120M74 130h132"/><path d="M80 30v100" stroke-dasharray="3 3"/><text x="86" y="120">1,5°</text><path d="M40 130h200" stroke-dasharray="6 3"/><text x="140" y="146" text-anchor="middle">parting line</text>`
+};
+const esc = s => s.replace(/\[verify\]/g,'<span class="m">[verify]</span>');
+const val = v => Array.isArray(v) ? '<ul>'+v.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>' : esc(v);
+document.getElementById('species').innerHTML = S.map(s=>`
+<section id="${s.id}">
+  <span class="n">${s.n}</span><span class="h">${s.name}<i>${s.latin}</i></span>
+  <div class="body">
+    <figure><svg width="280" height="150" viewBox="0 0 280 150" role="img" aria-label="Schematic drawing: ${s.name}"><g fill="none" stroke="#111" stroke-width="1">${DRAW[s.id]()}</g></svg><div class="fig-cap">Schematic, not to scale.</div></figure>
+    <div class="rows">${F.map(f=>`<span class="k">${f[1]}</span><span>${val(s[f[0]])}</span>`).join('')}</div>
+  </div>
+</section>`).join('');
+document.querySelectorAll('#species svg text').forEach(t=>{t.setAttribute('fill','#111');t.setAttribute('stroke','none');t.setAttribute('font-family','OCR B, monospace');t.setAttribute('font-size','10')});
+document.getElementById('ref-rows').innerHTML = S.map(s=>`<tr><td><a href="#${s.id}">${s.name}</a></td>${RK.map(k=>`<td>${s[k]}</td>`).join('')}</tr>`).join('');
+const k=8; /* px per mm */
+function wall(){const r=+document.getElementById('f-r').value,t=+document.getElementById('f-t').value,ri=Math.max(0,r-t);
+ document.getElementById('f-r-v').textContent=String(r).replace('.',',')+' mm';document.getElementById('f-t-v').textContent=String(t).replace('.',',')+' mm';
+ const x0=20,y0=20,L=180;const ro=r*k,rin=ri*k,T=t*k;
+ const outer=`M${x0} ${L}V${y0+ro}${ro?`A${ro} ${ro} 0 0 1 ${x0+ro} ${y0}`:''}H${L}`;
+ const ix=x0+T,iy=y0+T;const inner=`M${ix} ${L}V${iy+rin}${rin?`A${rin} ${rin} 0 0 1 ${ix+rin} ${iy}`:''}H${L}`;
+ document.getElementById('f-wall').innerHTML=`<path d="${outer}" fill="none" stroke="#111"/><path d="${inner}" fill="none" stroke="#111" stroke-dasharray="3 3"/>`;
+ document.getElementById('f-wall-out').innerHTML=r<t?`Inner radius 0: the inside corner is sharp and the wall is thicker there (${(t*Math.SQRT2-r*(Math.SQRT2-1)).toFixed(1).replace('.',',')} mm across the corner). Raise the outer radius to at least the wall.`:`Inner radius ${String(+ri.toFixed(1)).replace('.',',')} mm. The wall stays ${String(t).replace('.',',')} mm all the way round.`}
+['f-r','f-t'].forEach(i=>document.getElementById(i).addEventListener('input',wall));wall();
+function se(){const n=+document.getElementById('f-n').value;document.getElementById('f-n-v').textContent=String(n).replace('.',',');
+ const pts=(n)=>{let d='';for(let i=0;i<=144;i++){const t=i/144*2*Math.PI,c=Math.cos(t),s=Math.sin(t);d+=(i?'L':'M')+(100+80*Math.sign(c)*Math.abs(c)**(2/n)).toFixed(1)+' '+(100+80*Math.sign(s)*Math.abs(s)**(2/n)).toFixed(1)}return d+'Z'};
+ document.getElementById('f-se').innerHTML=`<rect x="20" y="20" width="160" height="160" fill="none" stroke="#111" stroke-opacity=".35" stroke-dasharray="3 3"/><circle cx="100" cy="100" r="80" fill="none" stroke="#111" stroke-opacity=".35" stroke-dasharray="3 3"/><path d="${pts(n)}" fill="none" stroke="#111"/>`}
+document.getElementById('f-n').addEventListener('input',se);se();
+</script>
+</body>
+</html>
