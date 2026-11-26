@@ -122,6 +122,23 @@ th{font-weight:700}
   </div>
 </section>
 
+<section id="notes">
+  <span class="n">12</span><span class="h">Notes</span>
+  <div class="body">
+    <div class="rows" style="grid-template-columns:24px minmax(0,1fr)">
+      <span class="k m" id="note-1">1</span>
+      <div>
+        <p><b>Why R10 steps by 1.26.</b> R10 means ten steps per decade. Every step multiplies by the same factor <i>q</i>, and ten steps must take 1 to 10: <span class="m">q¹⁰ = 10</span>, so <span class="m">q = 10^(1/10) ≈ 1.259</span>. The same rule gives R5 <span class="m">(10^(1/5) ≈ 1.585)</span> and R20 <span class="m">(10^(1/20) ≈ 1.122)</span>.</p>
+        <table style="max-width:620px;margin:4px 0 12px">
+          <tr><th class="meta">Exact</th><td class="m meta">1.000</td><td class="m meta">1.259</td><td class="m meta">1.585</td><td class="m meta">1.995</td><td class="m meta">2.512</td><td class="m meta">3.162</td><td class="m meta">3.981</td><td class="m meta">5.012</td><td class="m meta">6.310</td><td class="m meta">7.943</td></tr>
+          <tr><th class="meta">R10</th><td class="m meta">1</td><td class="m meta">1.25</td><td class="m meta">1.6</td><td class="m meta">2</td><td class="m meta">2.5</td><td class="m meta">3.15</td><td class="m meta">4</td><td class="m meta">5</td><td class="m meta">6.3</td><td class="m meta">8</td></tr>
+        </table>
+        <p>The exact values are rounded to friendly numbers, never more than about 1 % off; 3.162 becomes 3.15, close to π. Steps are equal in percentage, not in millimetres, because people and tolerances judge size by ratio. Three R10 steps double a size <span class="m">(10^(3/10) ≈ 1.995)</span>, the product of two R10 values is another R10 value, and one R10 step is exactly 1 dB of power ratio. <em>The eye and the ear agree on this one.</em> <a href="#ref-1" aria-label="Back to the text">↩</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="foot meta"><span>Object Field Guide · Volume V · Proportions · Rev. A</span><span>zuccarelli · barcelona</span></div>
 </div>
 
@@ -254,7 +271,7 @@ const S = [
   ],
   "numbers": [
    "R5 (×1.58 per step): 1, 1.6, 2.5, 4, 6.3, 10.",
-   "R10 (×1.26): 1, 1.25, 1.6, 2, 2.5, 3.15, 4, 5, 6.3, 8, 10.",
+   "R10 (×1.26): 1, 1.25, 1.6, 2, 2.5, 3.15, 4, 5, 6.3, 8, 10.<sup><a href=\"#note-1\" id=\"ref-1\" aria-label=\"Note 1: why 1.26\" style=\"font-family:var(--mono);font-size:10px;text-decoration:none;padding:0 2px\">1</a></sup>",
    "R20 (×1.12): R10 plus 1.12, 1.4, 1.8, 2.24, 2.8, 3.55, 4.5, 5.6, 7.1, 9.",
    "Multiply by 10, 100… for larger sizes."
   ],
