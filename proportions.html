@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proportions — Object Field Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<style>
+@font-face{font-family:"OCR B";src:url(assets/fonts/ocr-b.woff2) format("woff2");font-weight:400}
+:root{--paper:#f2f2f0;--ink:#111;--muted:rgba(17,17,17,.75);--hair:rgba(17,17,17,.2);--sans:"Schibsted Grotesk",Arial,sans-serif;--mono:"OCR B",ui-monospace,Menlo,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:14px/20px var(--sans)}
+a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.sheet{max-width:1040px;margin:0 auto;padding:48px}
+.m{font-family:var(--mono)}
+.meta{font-size:10px;line-height:14px;color:var(--muted)}
+.head{display:grid;grid-template-columns:56px 180px minmax(0,1fr) auto;font:10px/14px var(--mono);color:var(--muted)}
+.title{display:grid;grid-template-columns:56px minmax(0,1fr);align-items:baseline;margin-top:28px}
+.title .t{display:flex;align-items:baseline;gap:20px;flex-wrap:wrap}
+h1{margin:0;font-size:56px;line-height:56px;font-weight:500;letter-spacing:-.02em}
+.sub{margin:0;font-style:italic}
+section{display:grid;grid-template-columns:56px 180px minmax(0,1fr);border-top:1px solid var(--ink);padding-top:12px;margin-top:28px}
+section>.n{font-family:var(--mono)}
+section>.h{font-weight:700}
+section>.h i{display:block;font-weight:400;color:var(--muted)}
+.body p{margin:0 0 12px;max-width:620px}
+.rows{display:grid;grid-template-columns:120px minmax(0,1fr);row-gap:8px;column-gap:16px}
+.rows>.k{color:var(--muted)}
+.rows ul{margin:0;padding-left:16px}
+figure{margin:0 0 16px}
+figure svg{display:block;max-width:100%;height:auto}
+.fig-cap{font-size:10px;line-height:14px;color:var(--muted);margin-top:4px}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;vertical-align:top;padding:6px 12px 6px 0;border-top:1px solid var(--hair)}
+th{font-weight:700}
+.btn{font:14px/20px var(--sans);background:transparent;color:var(--ink);border:1px solid var(--ink);padding:6px 12px;cursor:pointer;border-radius:0;min-height:36px}
+.btn:hover{background:rgba(17,17,17,.06)}
+.btn:focus-visible,.widget:focus-visible,input:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.key{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px}
+.labs{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:24px}
+.lab{border-top:1px solid var(--hair);padding-top:12px}
+.lab h3{margin:0 0 8px;font-size:14px;line-height:20px;font-weight:700}
+.widget{display:block;margin:8px 0;touch-action:none;cursor:pointer;user-select:none}
+.foot{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--hair);padding-top:12px;margin-top:28px}
+@media (max-width:760px){.sheet{padding:24px}section{grid-template-columns:40px minmax(0,1fr)}section>.body{grid-column:1/-1;margin-top:8px}.head{grid-template-columns:40px minmax(0,1fr)}.head span:nth-child(n+3){grid-column:2}.title{grid-template-columns:40px minmax(0,1fr)}.rows{grid-template-columns:1fr}.rows>.k{margin-top:4px}}
+@media print{.sheet{padding:0}.labs,.key,.btn{display:none}section{break-inside:avoid}}
+.lab input[type=range]{width:100%;accent-color:#111}
+.lab label{display:block;margin-top:8px}
+.lab input[type=number]{font:14px/20px var(--mono);width:100px;border:1px solid var(--ink);background:transparent;padding:4px 6px;border-radius:0}
+.out{font-family:var(--mono)}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<div class="head"><span>00.0</span><span>Volume V</span><span>OFG-05 · Proportions · Rev. A</span><span><a href="index.html">Contents</a></span></div>
+
+<div class="title">
+  <span class="m meta">V</span>
+  <div class="t"><h1>Proportions</h1><p class="sub">Choosing dimensions without deciding each one.</p></div>
+</div>
+
+<section id="read">
+  <span class="n">01</span><span class="h">How to read this volume</span>
+  <div class="body"><p>Proportion is how a designer avoids choosing every dimension from scratch. Each system here is a species: a way of generating sizes that belong together. They are not rival religions. Most objects use two at once: a module for what must fit, and a ratio for what must look right.</p>
+<p>Numbers marked <span class="m">[verify]</span> are starting points, not laws. <em>The golden ratio has been marked [verify] by history itself.</em></p></div>
+</section>
+
+<section id="questions">
+  <span class="n">02</span><span class="h">Three questions</span>
+  <div class="body">
+    <div class="rows">
+      <span class="k m">02.1</span><span><b>Does it have to fit something?</b> A hand, a rack, a drawer, another part. Then the size comes from outside, and a <a href="#module">module</a> or the <a href="#human">human scale</a> decides it.</span>
+      <span class="k m">02.2</span><span><b>Does it come in sizes?</b> A family of parts (small, medium, large) needs steps that feel even. That is the job of <a href="#renard">preferred numbers</a> and of <a href="#root2">√2</a>.</span>
+      <span class="k m">02.3</span><span><b>Is it only about how it looks?</b> Then use a ratio: <a href="#simple">simple ratios</a> for calm, <a href="#root2">√2</a> for documents, the <a href="#golden">golden ratio</a> if you must.</span>
+    </div>
+  </div>
+</section>
+
+<div id="species"></div>
+
+<section id="lab">
+  <span class="n">09</span><span class="h">Lab: snap a dimension</span>
+  <div class="body">
+    <p>Type a dimension you were about to choose. The lab shows the nearest preferred numbers and the nearest multiple of your module, and draws a face in the ratio you pick.</p>
+    <div class="labs">
+      <div class="lab">
+        <h3>Snap</h3>
+        <label class="meta" for="p-in">Dimension, mm</label><br><input id="p-in" type="number" value="37" min="0.1" step="0.1">
+        <br><label class="meta" for="p-mod">Module, mm</label><br><input id="p-mod" type="number" value="8" min="0.1" step="0.1">
+        <div class="rows" style="margin-top:12px" id="p-out" aria-live="polite"></div>
+      </div>
+      <div class="lab">
+        <h3>Face</h3>
+        <label class="meta" for="p-ratio">Ratio</label><br>
+        <select id="p-ratio" class="btn" style="padding:2px 8px;min-height:28px">
+          <option value="1">1:1</option><option value="1.25">4:5</option><option value="1.3333">3:4</option><option value="1.5">2:3</option><option value="1.6667">3:5</option><option value="1.41421" selected>1:√2</option><option value="1.61803">1:φ</option><option value="2">1:2</option>
+        </select>
+        <svg id="p-face" width="200" height="200" viewBox="0 0 200 200" role="img" aria-label="Rectangle in the chosen ratio" style="display:block;margin-top:12px"></svg>
+        <p class="meta out" id="p-face-out"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reference">
+  <span class="n">10</span><span class="h">Quick reference</span>
+  <div class="body">
+    <table>
+      <thead><tr><th>System</th><th>Job</th><th>What it says</th></tr></thead>
+      <tbody id="ref-rows"></tbody>
+    </table>
+  </div>
+</section>
+
+<div class="foot meta"><span>Object Field Guide · Volume V · Proportions · Rev. A</span><span>zuccarelli · barcelona</span></div>
+</div>
+
+<script>
+const S = [
+ {
+  "id": "module",
+  "n": "03",
+  "name": "Module",
+  "latin": "Unitas repetita",
+  "job": "Fit",
+  "says": "Order. Parts that belong to a family.",
+  "recognise": "Every dimension is a whole number of one base unit. Things line up across objects that were designed years apart.",
+  "yes": [
+   "Products that sit next to each other, stack or plug into each other.",
+   "Systems that grow: you can add a part later without redrawing the others."
+  ],
+  "no": [
+   "A single object that fits nothing. The module then only adds a constraint with no benefit."
+  ],
+  "numbers": [
+   "Lego: 8.0 mm between studs, 9.6 mm a brick, 3.2 mm a plate. The brick height is 6/5 of the pitch.",
+   "Gridfinity: a 42 mm grid with 7 mm height units, for 3D-printed storage.",
+   "Eurorack: 1 HP = 5.08 mm wide, panels 128.5 mm tall (3U).",
+   "19-inch racks: 1 U = 44.45 mm (1.75 in) high."
+  ],
+  "cad": "In Onshape, set the module as a variable and drive every main dimension as a multiple of it. Changing the module then rescales the family, not one part.",
+  "alike": "Preferred numbers (also a set of allowed sizes, but growing by a ratio instead of a step).",
+  "habitat": [
+   "The Lego brick: the module that made a toy into a system.",
+   "Eurorack modular synthesizers: any maker, one width unit.",
+   "Gridfinity bins and baseplates."
+  ],
+  "mine": "The design guide starts here: a Lego-like module for every product. The value is still [verify]."
+ },
+ {
+  "id": "root2",
+  "n": "04",
+  "name": "√2",
+  "latin": "Folium duplex",
+  "job": "Size families, documents",
+  "says": "A document. Calm, slightly tall, technical.",
+  "recognise": "A rectangle whose long side is the short side times 1.414. Cut it in half across the long side and you get the same shape again.",
+  "yes": [
+   "Families of sizes where each one is half or double the next (A5, A4, A3).",
+   "Labels, panels and sheets that may be scaled up or down without changing shape."
+  ],
+  "no": [
+   "When the object must fit a module: √2 is irrational, so it never lands on a whole number of units."
+  ],
+  "numbers": [
+   "A4 = 210 × 297 mm. A0 = 1 m² of area.",
+   "Two steps of √2 double a size: 14 → 20 → 28 in the zuccarelli type scale."
+  ],
+  "cad": "Drive the long side as short × 1.4142. For a family, multiply or divide by √2 per step and round at the end, not at each step.",
+  "alike": "Golden ratio (1.618: wider, and it does not halve into itself).",
+  "habitat": [
+   "ISO 216 paper sizes: A, B and C series.",
+   "The zuccarelli design system: its type scale steps by √2."
+  ],
+  "mine": "Every sheet of this guide, and the type scale of the design system."
+ },
+ {
+  "id": "simple",
+  "n": "05",
+  "name": "Simple ratios",
+  "latin": "Ratio harmonica",
+  "job": "How it looks",
+  "says": "Calm. Resolved. Classical.",
+  "recognise": "Sides in small whole-number ratios: 1:1, 1:2, 2:3, 3:4, 3:5. They read as settled because the eye finds the relation quickly.",
+  "yes": [
+   "Faces, panels and openings that must feel at rest.",
+   "When you need a ratio that still works with a module: whole numbers land on whole units."
+  ],
+  "no": [
+   "When you need a sequence of sizes: simple ratios do not form an even family."
+  ],
+  "numbers": [
+   "The same ratios as musical intervals: 1:2 octave, 2:3 fifth, 3:4 fourth, 4:5 major third.",
+   "Palladio listed seven room shapes in his Four Books (1570), including the square, 3:4, 2:3, 3:5 and 1:2."
+  ],
+  "cad": "Pick the ratio, then pick a module that both sides can be multiples of: a 2:3 panel on a 4 mm module is 8 × 12, 16 × 24, 40 × 60 mm.",
+  "alike": "√2 and the golden ratio (irrational ratios: they never land on whole units).",
+  "habitat": [
+   "Palladio's villas: room after room in whole-number ratios.",
+   "Music: the same numbers, heard instead of seen. See the Sound Field Guide."
+  ],
+  "mine": "—"
+ },
+ {
+  "id": "golden",
+  "n": "06",
+  "name": "Golden ratio",
+  "latin": "Sectio aurea",
+  "job": "How it looks",
+  "says": "Dynamic. Slightly restless. Heavily marketed.",
+  "recognise": "Long side = short side × 1.618. Remove a square and the leftover rectangle has the same shape.",
+  "yes": [
+   "When a composition needs a strong, uneven division (a large part and a smaller one).",
+   "When the client already believes in it. It does no harm."
+  ],
+  "no": [
+   "As a justification. Many claims that famous objects, faces or buildings follow it do not survive measurement. Use it because you like it, not because it is a law."
+  ],
+  "numbers": [
+   "φ = 1.618…; Fibonacci numbers (5, 8, 13, 21, 34) approach it and are whole, so they work with a module."
+  ],
+  "cad": "Use Fibonacci pairs as dimensions (21 × 34, 34 × 55 mm): golden enough, and whole numbers.",
+  "alike": "√2 (narrower, and it halves into itself). 3:5 (the simple ratio closest to it).",
+  "habitat": [
+   "Le Corbusier's Modulor (published 1948), built on the golden ratio and the human body.",
+   "A large share of design books, often with more conviction than evidence."
+  ],
+  "mine": "—"
+ },
+ {
+  "id": "renard",
+  "n": "07",
+  "name": "Preferred numbers",
+  "latin": "Series Renardi",
+  "job": "Size families",
+  "says": "Engineering. Nothing arbitrary.",
+  "recognise": "Sizes that grow by a constant factor, so each step feels the same: 10, 12.5, 16, 20, 25… They look random and are not.",
+  "yes": [
+   "Choosing any dimension that has no reason to be one value or another: a diameter, a depth, a thickness.",
+   "Ranges of products in several sizes."
+  ],
+  "no": [
+   "When a module or a part you buy already fixes the size."
+  ],
+  "numbers": [
+   "R5 (×1.58 per step): 1, 1.6, 2.5, 4, 6.3, 10.",
+   "R10 (×1.26): 1, 1.25, 1.6, 2, 2.5, 3.15, 4, 5, 6.3, 8, 10.",
+   "R20 (×1.12): R10 plus 1.12, 1.4, 1.8, 2.24, 2.8, 3.55, 4.5, 5.6, 7.1, 9.",
+   "Multiply by 10, 100… for larger sizes."
+  ],
+  "cad": "When a dimension is free, take it from R10. When two neighbouring values are both wrong, use R20. Use the lab below to snap a number.",
+  "alike": "E-series of resistor values (E12, E24): the same idea for electronics, with different rounding.",
+  "habitat": [
+   "Charles Renard proposed the series in the 1870s to reduce the number of balloon cable sizes in the French army. Standardised as ISO 3.",
+   "The first-choice metric threads, M1, M1.6, M2, M2.5, M3, M4, M5, M6, M8, M10, are almost the R10 series."
+  ],
+  "mine": "—"
+ },
+ {
+  "id": "human",
+  "n": "08",
+  "name": "Human scale",
+  "latin": "Mensura hominis",
+  "job": "Fit",
+  "says": "That someone thought about the hand.",
+  "recognise": "The size is set by the body: a fingertip, a grip, a pocket, a reach. It is the module nobody chose.",
+  "yes": [
+   "Everything that is touched, held or carried. That is almost everything in this guide."
+  ],
+  "no": [
+   "Never avoid it. Only decide which body: hands vary a lot between people. Design for a range, not an average."
+  ],
+  "numbers": [
+   "A fingertip contact is around 10 mm across. [verify]",
+   "A power grip closes comfortably around roughly 30–50 mm. [verify]",
+   "Use real anthropometric tables for the population you design for, and test with hands, not with averages."
+  ],
+  "cad": "Keep a set of body references (fingertip, grip, palm) as sketch geometry in your Onshape template, and check every part against them.",
+  "alike": "Module (a chosen unit, not a given one).",
+  "habitat": [
+   "Le Corbusier's Modulor: the human body as a ruler, from a 1.83 m man with a raised arm.",
+   "Pocket objects: the TP-7 at 96 × 68 × 16 mm fits a hand and a coat pocket."
+  ],
+  "mine": "TP-7 cage: the size of the TP-7 decided the size of the case."
+ }
+];
+const F = [["recognise", "Recognise"], ["yes", "Use when"], ["no", "Avoid when"], ["numbers", "Numbers"], ["cad", "In CAD"], ["says", "What it says"], ["alike", "Look-alikes"], ["habitat", "Habitat"], ["mine", "In my work"]];
+const RK = ["job", "says"];
+const R=(x,y,w,h)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}"/>`;
+const DRAW={
+ module:()=>{let s='';for(let i=0;i<6;i++)for(let j=0;j<3;j++)s+=`<circle cx="${70+i*24}" cy="${40+j*24}" r="7"/>`;return R(56,26,148,76)+s},
+ root2:()=>R(60,20,85,120)+`<path d="M60 80h85"/>`+R(165,48,60,85)+`<text x="102" y="148" text-anchor="middle">1 : 1.414</text>`,
+ simple:()=>R(30,40,60,60)+R(110,40,40,80)+R(170,40,80,40)+`<text x="60" y="148" text-anchor="middle">1:1</text><text x="130" y="148" text-anchor="middle">1:2</text><text x="210" y="148" text-anchor="middle">2:1</text>`,
+ golden:()=>R(40,30,146,90)+`<path d="M130 30v90M130 86h56"/><path d="M40 120A90 90 0 0 1 130 30" stroke-dasharray="3 3"/><text x="113" y="146" text-anchor="middle">1 : 1.618</text>`,
+ renard:()=>{const v=[1,1.25,1.6,2,2.5,3.15,4,5,6.3,8,10];return v.map((x,i)=>R(30+i*22,130-x*10,12,x*10)).join('')+`<text x="30" y="146">R10</text>`},
+ human:()=>`<path d="M90 130 C90 70 100 40 120 40 C140 40 140 70 140 130"/><path d="M120 40v-14" stroke-dasharray="3 3"/><circle cx="200" cy="80" r="22"/><path d="M178 80h44" stroke-dasharray="3 3"/><text x="200" y="120" text-anchor="middle">grip</text><text x="115" y="146" text-anchor="middle">fingertip</text>`
+};
+const esc = s => s.replace(/\[verify\]/g,'<span class="m">[verify]</span>');
+const val = v => Array.isArray(v) ? '<ul>'+v.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>' : esc(v);
+document.getElementById('species').innerHTML = S.map(s=>`
+<section id="${s.id}">
+  <span class="n">${s.n}</span><span class="h">${s.name}<i>${s.latin}</i></span>
+  <div class="body">
+    <figure><svg width="280" height="150" viewBox="0 0 280 150" role="img" aria-label="Schematic drawing: ${s.name}"><g fill="none" stroke="#111" stroke-width="1">${DRAW[s.id]()}</g></svg><div class="fig-cap">Schematic, not to scale.</div></figure>
+    <div class="rows">${F.map(f=>`<span class="k">${f[1]}</span><span>${val(s[f[0]])}</span>`).join('')}</div>
+  </div>
+</section>`).join('');
+document.querySelectorAll('#species svg text').forEach(t=>{t.setAttribute('fill','#111');t.setAttribute('stroke','none');t.setAttribute('font-family','OCR B, monospace');t.setAttribute('font-size','10')});
+document.getElementById('ref-rows').innerHTML = S.map(s=>`<tr><td><a href="#${s.id}">${s.name}</a></td>${RK.map(k=>`<td>${s[k]}</td>`).join('')}</tr>`).join('');
+const R10=[1,1.25,1.6,2,2.5,3.15,4,5,6.3,8], R20=[1,1.12,1.25,1.4,1.6,1.8,2,2.24,2.5,2.8,3.15,3.55,4,4.5,5,5.6,6.3,7.1,8,9];
+function nearest(x,ser){if(!(x>0))return '—';const e=Math.floor(Math.log10(x));let best=null,bd=1e9;for(const k of [e-1,e,e+1])for(const v of ser){const c=v*10**k,d=Math.abs(Math.log(c/x));if(d<bd){bd=d;best=c}}return +best.toPrecision(3)}
+const fmt=v=>typeof v==='number'?String(v).replace('.',',')+' mm':v;
+function snap(){const x=+document.getElementById('p-in').value,m=+document.getElementById('p-mod').value;
+ const mm=m>0?Math.max(1,Math.round(x/m))*m:'—';
+ document.getElementById('p-out').innerHTML=`<span class="k">R10</span><span class="out">${fmt(nearest(x,R10))}</span><span class="k">R20</span><span class="out">${fmt(nearest(x,R20))}</span><span class="k">Module</span><span class="out">${fmt(typeof mm==='number'?+mm.toFixed(2):mm)}${m>0?' ('+Math.max(1,Math.round(x/m))+' × '+String(m).replace('.',',')+')':''}</span>`}
+['p-in','p-mod'].forEach(i=>document.getElementById(i).addEventListener('input',snap));snap();
+function face(){const r=+document.getElementById('p-ratio').value,H=170,W=H/r;const x=(200-W)/2;
+ document.getElementById('p-face').innerHTML=`<rect x="${x}" y="15" width="${W}" height="${H}" fill="none" stroke="#111"/>`;
+ document.getElementById('p-face-out').textContent=`100 × ${(100*r).toFixed(1).replace('.',',')} mm`}
+document.getElementById('p-ratio').addEventListener('change',face);face();
+</script>
+</body>
+</html>
