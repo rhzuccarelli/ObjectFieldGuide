@@ -58,7 +58,9 @@ Every entry has the same fields:
 - **Habitat.** Real products where it lives, with designer and year.
 - **In my work.** Where it appears in my own projects.
 
-Drawings are schematic line drawings made for the guide, not photographs of the referenced products.
+Drawings are schematic line drawings made for the guide. Each volume also has a **Landmarks** section: a short history of the designers, brands and objects that shaped its species, with year, author and why it matters.
+
+Photographs of landmark objects are freely licensed images from Wikimedia Commons (CC0, CC BY, CC BY-SA or public domain), loaded from Commons and shown in greyscale to keep the guide in black and white. Each photo carries its author, licence and a link to its source page.
 
 ## Design
 
